@@ -1,0 +1,87 @@
+//1
+procedure Mover3VecesAl_(direcciónAMover){
+    /*
+        PROPÓSITO: Mover el cabezal 3 veces al *direcciónAMover* de la celda actual.
+        PRECONDICIONES: Debe haber al menos 3 celdas al *direcciónAMover*.
+        PARÁMETROS: direcciónAMover - direccion. Es la dirección a la que se moverá el cabezal.
+    */
+    repeat (3) {
+        Mover(direcciónAMover)
+    }
+} //OK
+//2
+procedure Poner6DeColor_(colorAPoner){
+    /*
+        PROPÓSITO: Poner 6 bolitas de *colorAPoner* en la celda actual.
+        PRECONDICIONES: Ninguna.
+        PARÁMETROS: colorAPoner - color. Representa el color de la bolita a poner en la celda actual.
+    */
+    repeat (6) {
+      Poner(colorAPoner)  
+    }
+}//OK
+//3
+procedure Poner_Al_(colorAPoner, direcciónDondePoner){
+    /*
+        PROPÓSITO: Poner bolitas de color *colorAPoner* en la celda lindante al *direcciónDondePoner* dejando el cabezal en dicha celda.
+        PRECONDICIONES: Debe haber al menos 1 celda en *direccionDondePoner* 
+        PARÁMETROS: colorAPoner - color. Representa el color de la bolita a poner.
+                    direcciónDondePoner - dirección. Representa la dirección a la que se moverá el cabezal.
+    */
+    Mover(direcciónDondePoner)
+    Poner(colorAPoner)
+    
+}
+//4
+procedure ReemplazarUnaDe_Por_(colorAReemplazar, colorPorElCualReemplazar){
+     /*
+        PROPÓSITO: Poner bolitas de color *colorAReemplazar* sacando la de color *colorPorElCualReemplazar*.
+        PRECONDICIONES: Debe haber al menos una bolita del color *colorAReemplazar* en la celda actual.
+        PARÁMETROS: colorAReemplazar - color. Representa el color de la bolita a reeemplazar.
+                    colorPorElCualReemplazar - color. Representa el color de la bolita a poner.
+    */
+    Sacar(colorAReemplazar)
+    Poner(colorPorElCualReemplazar)
+}//OK
+//5a
+procedure Poner_ADistancia3Al_(color, dirección) {
+     /*
+        PROPÓSITO: Poner bolitas de color *color* a 3 celdas de distacia en dirección *dirección* de la celda actual dejando el cabezal en dicha celda.
+        PRECONDICIONES: Debe haber al menos 3 celdas en direccion al *dirección*
+        PARÁMETROS: color - color. Representa el color de la bolita a poner.
+                    dirección - dirección. Representa la dirección a la cual se mueve el cabezal.
+    */
+    Mover3VecesAl_(dirección) Poner(color) 
+}
+
+//6
+procedure Pintar3Puntos_(colorPunto) {
+     /*
+        PROPÓSITO: Pintar 3 puntos de color azul desde la celda actual hacia el este, a una distancia de 3 celdas entre cada punto.
+        PRECONDICIONES: Debe haber al menos 6 celdas al Este.
+    */
+    Poner(colorPunto)
+    Poner_ADistancia3Al_(colorPunto, Este)
+    Poner_ADistancia3Al_(colorPunto, Este)
+    Mover3VecesA_(Oeste)Mover3VecesA_(Oeste)
+   
+}
+
+//7
+procedure PintarArcoIris(){
+    /* 
+        PROPÓSITO: pintar un arcoiris.
+        PRECONDICIONES: *Debe haber al menos 9 celdas al este de la actual 1 una al norte.
+    */
+    Pintar3Puntos_(Negro)
+    Mover(Este)
+    Pintar3Puntos_(Azul)
+    Mover(Norte)
+    Pintar3Puntos_(Verde)
+    Mover(Este)
+    Mover(Sur)
+    Pintar3Puntos_(Rojo)
+    Mover(Oeste)
+    Mover(Oeste)   
+
+}

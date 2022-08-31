@@ -1,0 +1,64 @@
+procedure PonerUnaDeCada(){
+     /*
+    	PRÓPOSITO: Poner una bolita de cada color en la celda actual.
+    	PRECONDICIONES: Ninguna.
+    */
+    Poner(Azul)
+    Poner(Verde)
+    Poner(Rojo)
+    Poner(Negro)
+}
+
+
+procedure Mover3VecesAlOeste(){
+     /*
+    	PRÓPOSITO: Mover el cabezal tres veces al Oeste de la celda actual.
+    	PRECONDICIONES: Debe haber al menos tres celdas al oeste.
+    */
+    Mover(Oeste)
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+procedure DibujarLíneaMulticolorDeLargo4(){
+     /*
+    	PRÓPOSITO: Dibujar linea multicolor de largo 4 hacia el Este.
+    	PRECONDICIONES: Debe haber al menos tres celdas hacia el Este de la celda actual. 
+    */
+    PonerUnaDeCada()
+    Mover(Este)
+    PonerUnaDeCada()
+    Mover(Este)
+    PonerUnaDeCada()
+    Mover(Este)
+    PonerUnaDeCada()
+    Mover3VecesAlOeste()
+    
+}
+
+
+procedure DibujarCuadradoMulticolorDeLado4(){
+     /*
+    	PRÓPOSITO: Dibujar cuadrado sólido multicolor de tamaño 4x4.
+    	PRECONDICIONES: Debe haber al menos 3 celdas libres al este y
+    	               3 celdas libres norte.
+    */
+    DibujarLíneaMulticolorDeLargo4()
+    Mover(Norte)
+    DibujarLíneaMulticolorDeLargo4()
+    Mover(Norte)
+    DibujarLíneaMulticolorDeLargo4()
+    Mover(Norte)
+    DibujarLíneaMulticolorDeLargo4()
+    Mover3VecesAlSur()
+}
+ 
+procedure Mover3VecesAlSur(){
+     /*
+    	PRÓPOSITO: Mover el cabezal tres veces al Sur de la celda actual.
+    	PRECONDICIONES: Debe haber al menos tres celdas al Sur.
+    */
+    Mover(Sur)
+    Mover(Sur)
+    Mover(Sur)
+}

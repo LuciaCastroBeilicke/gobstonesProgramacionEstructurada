@@ -1,0 +1,55 @@
+procedure RegistrarElDiaDeLaMemoria(){
+    /*
+        PROPÓSITO: Registrar la fecha del dia de la memoria.
+        PRECONDICIONES: * Debe haber al menos dos celdas al este de la celda actual.
+                        * Las primeras dos celdas al este deben estar vacias.
+        OBSERVACIONES: El dia de la memoria se representa con:
+                        * 24 bolitas azules representan el dia en la celda actual.
+                        * 3 bolitas Rojas representan el mes en la celda lindante al Este.
+                        * 1976 bolitas Verdes representan el año en la celda lindante al Este de la anterior.
+    */
+    RegistrarDia24()
+    Mover(Este)
+    RegistrarMes3()
+    Mover(Este)
+    RegistrarAño1976()
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+procedure RegistrarDia24(){
+      /*
+        PROPÓSITO: Registrar el dia 24 en la celda actual.
+        PRECONDICIONES: * La celda actual debe estar vacia.
+        OBSERVACIONES: El dia de la memoria se representa con:
+                        * 24 bolitas azules representan el dia en la celda actual.
+    */
+    Poner10Azules()
+    Poner10Azules()
+    Poner4Azules()
+}
+
+procedure RegistrarMes3(){
+      /*
+        PROPÓSITO: Registrar el mes 3 en la celda actual.
+        PRECONDICIONES: * La celda actual debe estar vacia.
+        OBSERVACIONES: El dia de la memoria se representa con:
+                        * 3 bolitas Rojas representan el mes en la celda actual.
+    */
+    Poner3Rojas()
+}
+
+procedure RegistrarAño1976(){
+      /*
+        PROPÓSITO: Registrar el año 1976 en la celda actual.
+        PRECONDICIONES: * La celda actual debe estar vacia.
+        OBSERVACIONES: El dia de la memoria se representa con:
+                        * 1976 bolitas Verde representan el año en la celda actual.
+    */
+    Poner1000Verdes()
+    Poner900Verdes()
+    Poner70Verdes()
+    Poner6Verdes()
+}
+
+

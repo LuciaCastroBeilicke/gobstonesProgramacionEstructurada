@@ -1,0 +1,40 @@
+procedure Mover3VecesAlNorte(){
+    /*
+        PROPÓSITO: Mover al cabezal 3 celdas al norte de la celda actual
+        PRECONDICIONES: Debe hacer al menos 3 celdas al norte de la celda actual.
+    */
+    repeat(3){          //repetir "cantidad de veces" veces
+        Mover(Norte)
+    }
+}
+
+
+procedure Mover3VecesAlEste(){
+    /*
+        PROPÓSITO: Mover al cabezal 3 celdas al Este de la celda actual
+        PRECONDICIONES: Debe hacer al menos 3 celdas al Este de la celda actual.
+    */
+    repeat(3){          //repetir "cantidad de veces" veces
+        Mover(Este)
+    }
+}
+
+procedure Poner6DeColorNegro(){
+    /*
+        PROPÓSITO: Poner 6 bolitas de color negro en la celda actual
+        PRECONDICIONES: Ninguna.
+    */
+    repeat(6){          //repetir "cantidad de veces" veces
+        Poner(Negro)
+    }
+}
+
+procedure Poner6DeColorVerde(){
+    /*
+        PROPÓSITO: Poner 6 bolitas de color verde en la celda actual
+        PRECONDICIONES: Ninguna.
+    */
+    repeat(6){          //repetir "cantidad de veces" veces
+        Poner(Verde)
+    }
+}

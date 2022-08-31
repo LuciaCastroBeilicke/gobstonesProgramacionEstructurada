@@ -1,0 +1,69 @@
+program{ 
+    DibujarRelojAnalógicoSimplificado()
+}
+
+procedure DibujarRelojAnalógicoSimplificado(){
+    /*
+        PROPÓSITO: Dibujar un reloj analógico de tamaño 5x5.
+        PRECONDICIONES: *Debe haber por lo menos 2 celdas al norte, sur, este y oeste de la inicial.
+                        *El cabezal debe estar en el centro del tablero.
+    */
+   
+    Dibujar12()
+    Dibujar3()
+    Dibujar9()
+    Dibujar6()
+}
+
+procedure Dibujar12(){
+    /*
+        PROPÓSITO: Dibujar 12.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: El 12 se representa con 12 bolitas rojas.
+    */
+    Mover(Norte)Mover(Norte)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Mover(Sur)Mover(Sur)
+}
+
+procedure Dibujar3(){
+    /*
+        PROPÓSITO: Dibujar 3.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: El 3 se representa con 3 bolitas rojas.
+    */
+    Mover(Este)Mover(Este)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Mover(Oeste)Mover(Oeste)
+    
+}
+
+procedure Dibujar9(){
+    /*
+        PROPÓSITO: Dibujar 9.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: El 9 se representa con  bolitas rojas.
+    */
+    Mover(Oeste)Mover(Oeste)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Mover(Este)Mover(Este)
+    
+}
+
+procedure Dibujar6(){
+    /*
+        PROPÓSITO: Dibujar 6.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: El 6 se representa con 6 bolitas rojas.
+    */
+    Mover(Sur)Mover(Sur)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Mover(Norte)Mover(Norte)
+    
+}

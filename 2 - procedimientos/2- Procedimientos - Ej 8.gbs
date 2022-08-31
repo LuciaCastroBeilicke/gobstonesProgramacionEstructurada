@@ -1,0 +1,72 @@
+procedure PonerUnaSemilla(){
+    /*
+        PROPÓSITO: Poner una semilla en la parcela actual.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: Una semilla se representa con una bolita roja.
+    */
+    Poner(Rojo)
+}
+
+procedure PonerUnÁrbol(){
+    /*
+        PROPÓSITO: Poner un árbol en la parcela actual.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: Un árbol se representa con una bolita verde.
+    */
+    Poner(Verde)
+}
+
+procedure PonerUnaBomba(){
+    /*
+        PROPÓSITO: Poner bomba en la parcela actual.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: Un bomba se representa con una bolita negra.
+    */
+    Poner(Negro)
+}
+
+procedure PonerUnNutriente(){
+    /*
+        PROPÓSITO: poner un nutriente en la parcela actual.
+        PRECONDICIONES: Ninguna.
+        OBSERVACIONES: Un nutriente se representa con una bolita azul.
+    */
+    Poner(Azul)
+}
+
+procedure SacarUnaSemilla(){
+    /*
+        PROPÓSITO: Sacar una semilla en la parcela actual.
+        PRECONDICIONES: debe haber al menos una semilla en la parcela actual.
+        OBSERVACIONES: Una semilla se representa con una bolita roja.
+    */
+    Sacar(Rojo)
+}
+
+procedure SacarUnÁrbol(){
+    /*
+        PROPÓSITO: sacar el arbol de la parcela actual.
+        PRECONDICIONES: debe haber  al menos un arbol en la parcela actual.
+        OBSERVACIONES: Un árbol se representa con una bolita verde.
+    */
+    Sacar(Verde)
+}
+
+procedure SacarUnaBomba(){
+    /*
+        PROPÓSITO: sacar la bomba de la parcela actual.
+        PRECONDICIONES: debe haber al menos una bomba en la parcelaactual.
+        OBSERVACIONES: Un bomba se representa con una bolita negra.
+    */
+    Sacar(Negra)
+}
+
+procedure SacarUnNutriente(){
+    /*
+        PROPÓSITO: sacar un nutriente de la parcela actual.
+        PRECONDICIONES: debe haber al menos un nutriente en la parcela actual.
+        OBSERVACIONES: Un nutriente se representa con una bolita azul.
+    */
+    Sacar(Azul)
+}
+

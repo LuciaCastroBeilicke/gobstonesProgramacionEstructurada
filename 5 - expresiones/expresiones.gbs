@@ -1,0 +1,144 @@
+/*
+    PROPÓSITO:
+    PRECONDICIONES:
+    PARÁMETROS:
+*/
+
+//2
+procedure Mover_SegúnColor_(dirección,color){
+    /*
+        PROPÓSITO: Mover el cabezal segun la cantidad de bolitas de color color 
+                    hacia el dirección
+        PRECONDICIONES: Debe haber al menos nroDeBolitas del color hacia el dirección
+        PARÁMETROS: dirección - Dirección. 
+                    color - Color.
+    */
+    repeat(nroBolitas(color)){
+        Mover(dirección)
+    }
+}
+
+//3
+procedure Poner_SemillasAl_(cantidadDeSemillas, direcciónAPoner){
+    /*
+        PROPÓSITO: Pone *cantidadDeSemillas* en la parcela lindante a la actual hacia el *direcciónAPoner*
+        PRECONDICIONES: Debe haber al menos una parcela lindante hacia el *direcciónAPoner*
+        PARÁMETROS: cantidadDeSemillas - Número. Representa la cantidad de semillas a poner en la celda actual.
+                    direcciónAPoner - Dirección. Representa la direccion hacia donde se moverá el cabezal.
+    */
+    Mover(direcciónAPoner)
+    Poner_Semillas(cantidadDeSemillas)
+    Mover(opuesto(direcciónAPoner))
+}
+
+procedure Sacar_ÁrbolesAl_(cantidadDeÁrboles, direcciónASacar){
+    /*
+        PROPÓSITO: Sacar *cantidadDeÁrboles* árboles en la parcela lindante al *direcciónASacar*
+        PRECONDICIONES: 
+        *Debe haber al menos una parcela lindante hacia el *direcciónASacar*.
+        *Debe haber al menos *cantidadDeÁrboles* arboles en la parcela lindante hacia *direcciónASacar*.
+        PARÁMETROS:
+        *cantidadDeÁrboles - Número. Indica cantidad de árboles a sacar.
+        *direcciónASacar - Dirección. Indica la direccion en la cual se va a sacar los arboles.
+    */
+    Mover(direcciónASacar)
+    Sacar_Árboles(cantidadDeÁrboles)
+    Mover(opuesto(direcciónASacar))
+
+}
+
+procedure Sacar_SemillasEnDiagonalAl_Y_(cantidadDeSemillas, primeraDirDiagonal, segundaDirDiagonal){
+    /*
+    PROPÓSITO: Sacar *cantidadDeSemillas* semillas en dirección *primeraDirDiagonal* - *segundaDirDiagonal*
+                desde la parcela actual.
+    PARÁMETROS: 
+        *cantidadDeSemillas: Número - Indica la cantidad de semillas a sacar.
+        *primeraDirDiagonal: Dirección - Indica a la primera dirección a la que se va a mover.
+        *segundaDirDiagonal: Dirección - Indica a la segunda dirección a la que se va a mover.
+    PRECONDICIONES:
+        *Debe haber al menos una parcela en dirección *primeraDirDiagonal*-*segundaDirDiagonal* 
+            desde la parcela actual.
+        *Debe haber al menos *cantidadDeSemillas* semillas en la parcela 
+            en diagonal *primeraDirDiagonal*-*segundaDirDiagonal*.
+        **primeraDirDiagonal* y *segundaDirDiagonal* no pueden ser ni opuestas ni iguales.
+    */
+    Mover(primeraDirDiagonal)
+    Mover(segundaDirDiagonal)
+    Sacar_Semillas(cantidadDeSemillas)
+    Mover(opuesto(primeraDirDiagonal))
+    Mover(opuesto(segundaDirDiagonal))
+
+}
+
+procedure Sacar_ÁrbolesEnDiagonalHorariaAl_(cantidadDeÁrboles, direcciónDiagonal){
+    /*
+    PROPÓSITO: Sacar *cantidadDeÁrboles* árboles en dirección diagonal *direcciónDiagonal* a la parcela actual.
+    y su siguiente en la parcela actual
+    PARÁMETROS: 
+        *cantidadDeÁrboles: Número. indica la cant de arboles a sacar.
+        *direcciónDiagonal: Dirección. la direccion q determina la diagonal horario de la cual sacaremos los arboles
+     PRECONDICIONES: 
+        *Debe haber al menos una parcela en direccion diagonal horaria *direcciónDiagonal*
+        *Debe hacer al menos *cantidadDeÁrboles* arboles en la parcela en diagonal diagonal y su siguiente.
+    */
+    Mover(direcciónDiagonal)
+    Mover(siguiente(direcciónDiagonal))
+    Sacar_Árbol(cantidadDeÁrboles)
+    Mover(opuesto(direcciónDiagonal))
+    Mover(opuesto(siguiente(direcciónDiagonal)))
+}
+
+//4
+
+procedure DibujarLaBandaGloriosaDeAncho_(ancho) {
+    /*
+        PROPÓSITO: Dibujar una banda en diagonal de ancho *ancho* de color Rojo
+        PARÁMETROS: 
+            * ancho: Número - Describe en amcho de la bnada.
+        PRECONDICIONES:
+            * Debe haber al menos *ancho* celdas al este de la inciial
+    */
+    repeat(ancho - 1){
+        DibujarLineaRoja()
+        PosicionarseAlCOmienzoDeLaSiguenteColumna()
+    }
+    DibujarLineaRoja()
+}
+
+procedure DibujarLineaRoja(){
+     /*
+        PROPÓSITO: Dibujar una linea hacia el norte de largo 4.
+        PRECONDICIONES:
+            * Debe haber al menos 4 celdas al norte de la actual.
+    */
+     repeat(3){
+        Poner(Rojo)
+        Mover(Norte)
+    }
+    Poner(Rojo)
+}
+
+procedure PosicionarseAlCOmienzoDeLaSiguenteColumna(){
+     /*
+        PROPÓSITO: Posicionarse al comienzo de la siguiente columna hacia el este.
+        PRECONDICIONES:
+            * Debe haber al menos una celda al este de la actual.
+    */
+    repeat(2){
+        Mover(Sur)
+    }
+    Mover(Este)
+}
+
+// 9
+procedure PasarPalabraActualAMayúsculas()(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:  Pasar la palabra actual de minuscula a mayuscula.
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    
+}

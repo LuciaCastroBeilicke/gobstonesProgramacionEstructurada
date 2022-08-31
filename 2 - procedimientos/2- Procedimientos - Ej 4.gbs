@@ -1,0 +1,54 @@
+/*
+        PROPÓSITO:
+        PRECONDICIONES:
+*/
+  //EJERCICIO 4  
+procedure PonerGuardaDe5Azulejos(){
+    /*
+        PROPÓSITO: Poner una guarda de azulejos de largo 5 hacia el este.
+        PRECONDICIONES: Debe haber, por lo menos, 5 celdas al este.
+        OBSERVACIONES: 
+            *Un azulejo está representado por:
+                -5 bolitas negras
+                -9 bolitas rojas
+                -1 bolita verde
+    */
+    PonerAzulejo() Mover(Este)
+    PonerAzulejo() Mover(Este)
+    PonerAzulejo() Mover(Este)
+    PonerAzulejo() Mover(Este)
+    PonerAzulejo() 
+}
+
+procedure PonerAzulejo(){
+    /*
+        PROPÓSITO: Poner un azulejo en la celda actual.
+        PRECONDICIONES: ninguna.
+    */
+    Poner5AzulejosNegros()
+    Poner9AzulejosRojos()
+    Poner(Verde)
+   
+}
+
+procedure Poner5AzulejosNegros(){
+     /*
+        PROPÓSITO: Poner 5 bolitas negras en la celda actual.
+        PRECONDICIONES: ninguna.
+    */
+    Poner(Negro)
+    Poner(Negro)
+    Poner(Negro)
+    Poner(Negro)
+    Poner(Negro)
+}
+
+procedure Poner9AzulejosRojos(){
+     /*
+        PROPÓSITO: Poner 9 bolitas rojas en la celda actual.
+        PRECONDICIONES: ninguna.
+    */
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+    Poner(Rojo)Poner(Rojo)Poner(Rojo)
+}
