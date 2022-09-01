@@ -85,3 +85,144 @@ procedure PintarArcoIris(){
     Mover(Oeste)   
 
 }
+
+//8 no corregido
+procedure Poner_DeColorRojo(cantidadAPoner) {
+    /*
+        PROPÓSITO:  Poner *cantidadAPoner* bolitas de color rojo
+        PARÁMETROS:
+            * cantidadAPoner: Número - Indica la cantidad de bolitas a poner.
+        PRECONDICIONES:
+            * Ninguna
+    */
+    repeat (cantidadAPoner) {
+        Poner(Rojo)
+    }
+}
+
+//9 NO CORREGIDO BIBLIOTECA
+procedure Poner_DeColor_(cantidadAPoner, colorAPoner){
+    /*
+        PROPÓSITO:  Poner *cantidadAPoner* bolitas de color *colorAPoner*
+        PARÁMETROS:
+            * cantidadAPoner: Número - Indica la cantidad de bolitas a poner.
+            * colorAPoner: Color - Indica el color de la bolita  a poner.
+        PRECONDICIONES:
+            * Ninguna
+    */
+    repeat (cantidadAPoner) {
+        Poner(colorAPoner)
+    }
+}
+
+//10 NO CORREGIDO BIBLIOTECA
+
+procedure Mover_VecesAl_(cantidadAMover, direcciónAMover){
+    /*
+        PROPÓSITO:  Mover el cabezal *cantidadAMover* celdas al *direcciónAMover*
+        PARÁMETROS:
+            * cantidadAMover: Número - Indica la cantidad de celdas a mover el cabezal.
+            * direcciónAMover: Dirección - Indica la direccion hacia la cual se moverá el cabezal.
+        PRECONDICIONES:
+            * Debe haber, al menos, *cantidadAMover* celdas al *direcciónAMover*
+    */
+    repeat (cantidadAMover) {
+        Mover(direcciónAMover)
+    }
+}
+
+//11 NO CORREGIDO BIBLIOTECA
+procedure Sacar_DeColor_(cantidadASacar, colorASacar){
+    /*
+        PROPÓSITO:  Sacar *cantidadASacar* bolitas de color *colorASacar*
+        PARÁMETROS:
+            * cantidadASacar: Número - Indica la cantidad de bolitas a sacar.
+            * colorASacar: Color - Indica el color de la bolita  a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadASacar* bolitas en la celda actual.
+    */
+    repeat (cantidadASacar) {
+        Poner(colorASacar)
+    }
+}
+
+//16 NO CORREGIDO
+procedure Poner_Semillas(cantidadDeSemillasAPoner){
+    /*
+        PROPÓSITO:  Poner *cantidadDeSemillasAPoner* semillas en la parcela actual
+        PARÁMETROS:
+            * cantidadDeSemillasAPoner: Número - Indica la cantidad de semilals a poner.
+        PRECONDICIONES:
+            * Ninguna
+    */
+    repeat (cantidadDeSemillasAPoner) {
+        PonerUnaSemilla()
+    }
+}
+
+procedure Sacar_Semillas(cantidadDeSemillasASacar){
+    /*
+        PROPÓSITO:  Sacar *cantidadDeSemillasASacar* semillas en la parcela actual
+        PARÁMETROS:
+            * cantidadDeSemillasASacar: Número - Indica la cantidad de semilals a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadDeSemillasASacar* en la celda actual
+    */
+    repeat (cantidadDeSemillasAPoner) {
+        SacarUnaSemilla()
+    }
+}
+
+procedure Poner_Árboles(cantidadDeÁrbolesAPoner){
+    /*
+        PROPÓSITO:  Poner *cantidadDeÁrbolesAPoner* árboles en la parcela actual
+        PARÁMETROS:
+            * cantidadDeÁrbolesAPoner: Número - Indica la cantidad de árboles a poner.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadDeÁrbolesAPoner* en la parcela actual
+    */
+    repeat (cantidadDeÁrbolesAPoner) {
+        PonerUnÁrbol()
+    }
+}
+
+procedure Sacar_Árboles(cantidadDeÁrbolesASacar){
+    /*
+        PROPÓSITO:  Sacar *cantidadDeÁrbolesASacar* árboles en la parcela actual
+        PARÁMETROS:
+            * cantidadDeÁrbolesASacar: Número - Indica la cantidad de árboles a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadDeÁrbolesASacar* en la parcela actual
+    */
+    repeat (cantidadDeÁrbolesASacar) {
+        SacarUnÁrbol()
+    }
+}
+
+procedure Poner_Nutrientes(cantidadDeNutrientesAPoner){
+    /*
+        PROPÓSITO:  Poner *cantidadDeNutrientesAPoner* nutrientes en la parcela actual
+        PARÁMETROS:
+            * cantidadDeNutrientesAPoner: Número - Indica la cantidad de nutrientes a poner.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadDeNutrientesAPoner* en la parcela actual
+    */
+    repeat (cantidadDeNutrientesAPoner) {
+        PonerUnNutriente()
+    }
+}
+
+procedure Sacar_Nutrientes(cantidadDeNutrientesASacar)
+{
+    /*
+        PROPÓSITO:  Sacar *cantidadDeNutrientesASacar* nutrientes en la parcela actual
+        PARÁMETROS:
+            * cantidadDeNutrientesASacar: Número - Indica la cantidad de nutrientes a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadDeNutrientesASacar* en la parcela actual
+    */
+    repeat (cantidadDeÁrbolesASacar) {
+        SacarUnNutriente()
+    }
+}
+

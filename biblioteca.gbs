@@ -1,0 +1,56 @@
+//3 NO CORREGIDO BIBLIOTECA (PROCEDIMIENTOS 2)
+procedure PonerUnaDeCada(){
+     /*
+    	PRÓPOSITO: Poner una bolita de cada color en la celda actual.
+    	PRECONDICIONES: Ninguna.
+    */
+    Poner(Azul)
+    Poner(Verde)
+    Poner(Rojo)
+    Poner(Negro)
+}
+//9 NO CORREGIDO BIBLIOTECA (PARÁMETROS 4)
+procedure Poner_DeColor_(cantidadAPoner, colorAPoner){
+    /*
+        PROPÓSITO:  Poner *cantidadAPoner* bolitas de color *colorAPoner*
+        PARÁMETROS:
+            * cantidadAPoner: Número - Indica la cantidad de bolitas a poner.
+            * colorAPoner: Color - Indica el color de la bolita  a poner.
+        PRECONDICIONES:
+            * Ninguna
+    */
+    repeat (cantidadAPoner) {
+        Poner(colorAPoner)
+    }
+}
+
+//10 NO CORREGIDO BIBLIOTECA (PARÁMETROS 4)
+
+procedure Mover_VecesAl_(cantidadAMover, direcciónAMover){
+    /*
+        PROPÓSITO:  Mover el cabezal *cantidadAMover* celdas al *direcciónAMover*
+        PARÁMETROS:
+            * cantidadAMover: Número - Indica la cantidad de celdas a mover el cabezal.
+            * direcciónAMover: Dirección - Indica la direccion hacia la cual se moverá el cabezal.
+        PRECONDICIONES:
+            * Debe haber, al menos, *cantidadAMover* celdas al *direcciónAMover*
+    */
+    repeat (cantidadAMover) {
+        Mover(direcciónAMover)
+    }
+}
+
+//11 NO CORREGIDO BIBLIOTECA (PARÁMETROS 4)
+procedure Sacar_DeColor_(cantidadASacar, colorASacar){
+    /*
+        PROPÓSITO:  Sacar *cantidadASacar* bolitas de color *colorASacar*
+        PARÁMETROS:
+            * cantidadASacar: Número - Indica la cantidad de bolitas a sacar.
+            * colorASacar: Color - Indica el color de la bolita  a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos *cantidadASacar* bolitas en la celda actual.
+    */
+    repeat (cantidadASacar) {
+        Poner(colorASacar)
+    }
+}
