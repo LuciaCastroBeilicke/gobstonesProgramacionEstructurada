@@ -16,7 +16,7 @@ procedure Mover_SegúnColor_(dirección,color){
     repeat(nroBolitas(color)){
         Mover(dirección)
     }
-}
+}//ok
 
 //3
 procedure Poner_SemillasAl_(cantidadDeSemillas, direcciónAPoner){
@@ -29,7 +29,7 @@ procedure Poner_SemillasAl_(cantidadDeSemillas, direcciónAPoner){
     Mover(direcciónAPoner)
     Poner_Semillas(cantidadDeSemillas)
     Mover(opuesto(direcciónAPoner))
-}
+}//ok
 
 procedure Sacar_ÁrbolesAl_(cantidadDeÁrboles, direcciónASacar){
     /*
@@ -45,7 +45,7 @@ procedure Sacar_ÁrbolesAl_(cantidadDeÁrboles, direcciónASacar){
     Sacar_Árboles(cantidadDeÁrboles)
     Mover(opuesto(direcciónASacar))
 
-}
+}//ok
 
 procedure Sacar_SemillasEnDiagonalAl_Y_(cantidadDeSemillas, primeraDirDiagonal, segundaDirDiagonal){
     /*
@@ -68,7 +68,7 @@ procedure Sacar_SemillasEnDiagonalAl_Y_(cantidadDeSemillas, primeraDirDiagonal, 
     Mover(opuesto(primeraDirDiagonal))
     Mover(opuesto(segundaDirDiagonal))
 
-}
+}//ok
 
 procedure Sacar_ÁrbolesEnDiagonalHorariaAl_(cantidadDeÁrboles, direcciónDiagonal){
     /*
@@ -86,9 +86,9 @@ procedure Sacar_ÁrbolesEnDiagonalHorariaAl_(cantidadDeÁrboles, direcciónDiago
     Sacar_Árbol(cantidadDeÁrboles)
     Mover(opuesto(direcciónDiagonal))
     Mover(opuesto(siguiente(direcciónDiagonal)))
-}
+}//ok
 
-//4
+//4 no corregido
 
 procedure DibujarLaBandaGloriosaDeAncho_(ancho) {
     /*
@@ -130,15 +130,210 @@ procedure PosicionarseAlCOmienzoDeLaSiguenteColumna(){
     Mover(Este)
 }
 
-// 9
-procedure PasarPalabraActualAMayúsculas()(parámetro1, parámetro2) {
+//5 no corre
+procedure EnviarAliadosParaDuplicarEnemigos() {
     /*
-        PROPÓSITO:  Pasar la palabra actual de minuscula a mayuscula.
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+        PROPÓSITO: agrega soldados aliados en la celda actual
+                     en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
         PRECONDICIONES:
-            * ....
+            * Debe haber al menos un soldado enemigo en la celda actual.
+        OBSERVACIONES:
+            *Un soldado se representa con una bolita Negra
+            *Un enemigo se representa con una bolita Roja
     */
+    repeat (nroBolitas(Rojo)) {
+        Poner(Negro) * 2
+    }
+}
+
+procedure PelearLaBatalla() {
+    /*
+        PROPÓSITO:  Simula una batalla
+        PRECONDICIONES:Debe haber al menos 2 senemiagos y 3 aliados
+            
+    */
+    repeat(nroBolitas(Rojo) div 2 * 3){ //9
+        Sacar(Negro) 
+    }
+     
+     repeat(nroBolitas(Rojo)){ //6
+        Sacar(Rojo) 
+    } 
     
+}
+
+//6 no corregido
+procedure SacarTodasLasDeColor_(colorASacar){
+    /*
+        PROPÓSITO:  Saca todas las bolitas de la celda actual cuyo color sea *colorASacar*
+        PARÁMETROS:
+            * colorASacar: Color - Indica el color a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos una bolita de color *colorASacar* en la celda actual.
+    */
+    Sacar_DeColor_(nroBolitas(colorASacar),colorASacar )
+    
+}
+
+//7 no corregido
+procedure DibujarBandaDeAlto_YAncho_DeColor_(alto, ancho, color){
+   /*
+        PROPÓSITO: Dibujar una banda en diagonal de ancho *ancho* y alto *alto* de color *color*
+        PARÁMETROS: 
+            * alto: Número - Describe en alto de la banda.
+            * ancho: Número - Describe en amcho de la bnada.
+            * color: Color - Describe en color de la bnada.
+        PRECONDICIONES:
+            * Debe haber al menos *ancho* celdas al este de la inciial
+            * Debe haber al menos *alto* celdas al este de la inciial
+    */
+    repeat(ancho - 1){
+        DibujarLineaDeColor_DeAlto_(alto, color)
+        PosicionarseAlInicioDeLaSiguenteColumna(alto)
+    }
+    DibujarLineaDeColor_DeAlto_(alto, color)
+    
+}
+
+procedure DibujarLineaDeColor_DeAlto_(alto, color){
+ /*
+        PROPÓSITO: Dibujar una linea de alto *alto * de color *color*.
+        PRECONDICIONES:
+            * Debe haber al menos *alto* celdas al norte de la actual.
+    */
+     repeat(alto){
+        Poner(color)
+        Mover(Norte)
+    }
+    Poner(color)
+}
+
+procedure PosicionarseAlInicioDeLaSiguenteColumna(alto){
+     /*
+        PROPÓSITO: Posicionarse al comienzo de la siguiente columna hacia el este.
+        PRECONDICIONES:
+            * Debe haber al menos una celda al este de la actual.
+    */
+    repeat(alto){
+        Mover(Sur)
+    }
+    Mover(Este)
+}
+
+//8 ok
+program {
+    //EscribirHola()
+    PasarPalabraActualAMayúsculas()
+}
+
+procedure EscribirHola() {
+    /*
+    PROPÓSITO: Escribe la palabra "hola", en minúscualas, codificada en ASCII,
+        señalando la cantidad de letras de la palabra en el primer casillero.
+    PRECONDICIONES: Debe haber al menos cuatro celdas al Este de la
+        celda actual. Todas las celdas deben estar vacías de bolitas negras.
+    OBSERVACIONES: La cantidad de letras se representan con bolitas rojas y
+        cada letra se representa con bolitas negras.
+    */
+    Poner_DeColor_(4 , Rojo)
+    Mover(Este)
+    Poner_DeColor_(104 , Negro)
+    Mover(Este)
+    Poner_DeColor_(111 , Negro)
+    Mover(Este)
+    Poner_DeColor_(108 , Negro)
+    Mover(Este)
+    Poner_DeColor_(97 , Negro)
+    repeat(4) {
+        Mover(Oeste)
+    }
+    
+}
+
+procedure PasarPalabraActualAMayúsculas() {
+    /*
+    PROPÓSITO: A partir de una palabra en minúscula de la fila actual escribe en la fila 
+        lindante al Norte la misma palabra en mayúscula.
+    PRECONDICIONES: 
+        *La palabra inicial debe estar escrita en codificación ASCII, completamente en 
+            minúsculas.
+        * Debe haber una fila vacía de letras al Norte respecto a la fila actual.
+        * La celda actual debe contener la cantidad de letras que tiene la palabra.
+        * La cantidad de letras de la palabra debe estar indicada con bolitas rojas.
+    OBSERVACIONES: Las letras se representan mediante bolitas negras.
+                   La cantidad de letras se representan mediante bolitas rojas.
+    */
+    repeat(nroBolitas(Rojo)) {
+        Mover(Este)
+        PasarLetra_AMayúsculaAlNorte(nroBolitas(Negro) - 32)
+    }
+
+}
+
+procedure PasarLetra_AMayúsculaAlNorte(letraMayuscula) {
+    /*
+    PROPÓSITO: Escribe la letra que se encuentra en la celda actual en
+        mayúsculas en la celda lindante al Norte.
+    PARÁMETROS: letraMayuscula - Número: Indica la codificación ASCII de la letra
+        a escribir en la celda lindante al Norte.
+    PRECONDICIONES: 
+        * La letra debe estar codificada end ASCII.
+        * Debe haber al menos una celda lindante al Norte de la celda actual.
+        * La celda lindante al norte debe estar vacía.
+    OBSERVACIONES: Las letras se representan mediante bolitas negras.
+    */
+    Mover(Norte)
+    Poner_DeColor_(letraMayuscula , Negro)
+    Mover(opuesto(Norte))
+}
+
+procedure Sacar_DeColor_(cantidadASacar , colorASacar) {
+    /*
+    PROPÓSITO: Saca *cantidadASacar* bolitas de color *colorASacar* de la
+        celda actual.
+    PRECONDICIONES: Debe haber como mínimo *cantidadASacar* bolitas de
+        color *colorASacar* en la celda actual.
+    PARÁMETROS:
+        *cantidadASacar - Numero Entero: indica la cantidad de bolitas
+            que se quieren extraer de la celda.
+        *colorASacar - Color: indica el color de la o las bolitas que quieren
+            retirarse de la celda.
+    */
+    repeat(cantidadASacar) {
+        Sacar(colorASacar)
+    }
+}
+
+
+
+
+procedure Poner_DeColor_(cantidadAPoner , colorAPoner) {
+    /*
+    PROPÓSITO: Pone *cantidadAPoner* bolitas *colorAPoner* en la celda actual.
+    PRECONDICIONES: -
+    PARÁMETROS:
+        * cantidadAPoner - Numero Entero: indica la cantidad de bolitas
+            rojas que se pondrán en la celda actual.
+        * colorAPoner - Color: Indica el color de las bolitas que se
+            pondrán en la celda actual.
+    */
+    repeat(cantidadAPoner) {
+        Poner(colorAPoner)
+    }
+}
+
+procedure Mover_VecesAl_(cantidadAMover, direcciónAMover) {
+    /*
+    PROPÓSITO: Mueve el cabezal *cantidadAMover* unidades al *direcciónAMover*
+    PRECONDICIONES: Debe haber al menos *cantidadAMover* celdas al *direcciónAMover*
+        de la celda actual.
+    PARÁMETROS:
+        * cantidadAMover - Numero Entero: representa la cantidad de celdas
+            que se me moverá el cabezal.
+        * direcciónAMover - Punto Cardinal: indica en qué dirección se
+            moverá el cabezal.
+    */
+    repeat(cantidadAMover) {
+        Mover(direcciónAMover)
+    }
 }
