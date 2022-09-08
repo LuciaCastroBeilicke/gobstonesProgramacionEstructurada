@@ -54,3 +54,105 @@ procedure Sacar_DeColor_(cantidadASacar, colorASacar){
         Poner(colorASacar)
     }
 }
+
+//6 no corregido BIBLIOTECA (EXPRESIONES)
+procedure SacarTodasLasDeColor_(colorASacar){
+    /*
+        PROPÓSITO:  Saca todas las bolitas de la celda actual cuyo color sea *colorASacar*
+        PARÁMETROS:
+            * colorASacar: Color - Indica el color a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos una bolita de color *colorASacar* en la celda actual.
+    */
+    Sacar_DeColor_(nroBolitas(colorASacar),colorASacar )
+    
+}
+
+//4 corregido(alternativa)
+//a ok
+procedure Poner_Si_(color,condición){
+    /*
+        PROPÓSITO: Poner bolita de color *color* en la celda actual si se cumpple la condicion *condicion*
+        PARÁMETROS: 
+            *color - Color. Representa el color
+            *condición - Booleano. Representa la condicion que se debe poner cumplir par aponer la bolita
+        PRECONDICIONES: ninguna
+
+    */
+    if(condicion){
+        Poner(color)
+    }
+}
+//b ok
+procedure Sacar_Si_(color,condición){
+    /*
+        PROPÓSITO: Sacar bolitas de color *color* si se cumple *condicion*
+        PARÁMETROS: 
+            *color - Color. Representa el color
+            *condición - Booleano. Representa la condicion
+        PRECONDICIONES: en el caso que se cumpla la condicion *condicion*, debe haber una bolita *color*.
+
+    */
+    if(condicion){
+        Sacar(color)
+    }
+}
+//c
+procedure Mover_Si_(dirección,condición){
+    /*
+        PROPÓSITO: Mover hacia *direccion* si se cumple *condicion*
+        PARÁMETROS: 
+            *dirección - dirección. Representa la dirección hacia donde se moverá el cabezal
+            *condición - Booleano. Representa la condicion
+        PRECONDICIONES: Debe haber al menos una celda hacia el *direccion* si se cumple la condicion *condicion*
+
+    */
+    if(condicion){
+        Mover(dirección)
+    }
+}
+
+//2 NO CORREGIDO biblioteca (FUNCIONES)
+//2a
+function esCeldaVacia() {
+    /*
+        PROPÓSITO:  Indica si la celda actual está vacia
+        TIPO: booleano
+    */
+    
+    return (not hayBolitas(Azul) &&  
+            not hayBolitas(Negro) && 
+            not hayBolitas(Verde) && 
+            not hayBolitas(Rojo) )
+            //ó
+            // return (not (hayBolitas(Azul) ||  
+            // not hayBolitas(Negro) || 
+            // not hayBolitas(Verde) || 
+            // not hayBolitas(Rojo)) )
+}
+//2b
+function tieneUnaDeCada() {
+    /*
+        PROPÓSITO:  Indica si la celda tiene al menos una bolita de cada color
+        TIPO: booleano
+    */
+    
+    return ( hayBolitas(Azul) &&  
+             hayBolitas(Negro) && 
+             hayBolitas(Verde) && 
+             hayBolitas(Rojo) )
+           
+}
+//2c
+function esCeldaConBolitas() {
+    /*
+        PROPÓSITO:  Indica si la celda tiene al menos una bolita de cualquier color
+        TIPO: booleano
+    */
+    
+    return ( hayBolitas(Azul) || 
+             hayBolitas(Negro) ||
+             hayBolitas(Verde) ||
+             hayBolitas(Rojo) )
+           
+}

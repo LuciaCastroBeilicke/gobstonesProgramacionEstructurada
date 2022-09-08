@@ -1,0 +1,78 @@
+Comandos:
+
+    *primitivos:
+        *poner
+        *sacar
+        *mover
+        *ir al borde
+    *procedimientos:
+        *comandos que creamos nosotros.
+        *primitivos: vienen con la activdad
+    *repeticion: 
+    *alternativa: 
+        -if(condicion){
+
+        }else{
+
+        }
+
+
+
+Expresiones:
+    *literales (nros, colores, direccion y booleanos)
+    *primitivas:
+        -nroBolitas( <color> )--> nro
+        -hayBolitas( <color> )--> booleano
+        -puedeMover( <direccion> )--> direccion
+    *operadores:
+        *numericos:
+            -suma
+            -resta
+            -multiplicacion
+            -division
+            -potenciacion
+            -resto
+        *de enumeracion: (sobrecargados --> el tipo del operador dependen del argumentos que yo le paso)
+            -opuesto
+            -siguiente
+            -previo
+        *comparacion: booleanos, deben ser del mismo tipo 
+            -==
+            -< o <=
+            -> o >=
+            -/=
+            -
+        *lógicos: booleano, admiten booleanos 
+            - not
+            - and &&
+            - or ||        
+
+    *funciones: son los procedimientos de las expresiones
+        function nombreDeLaFuncion(){
+            /*
+            PROPÓSITO: Describe si es color, numero o dire... o indica si es bool
+            PRECONDICIÓN:
+            PARÁMETROS:
+            TIPO:Color
+            */
+            return (<Color>)
+        }
+
+
+
+Alternativas
+    1.if(condicion){
+
+    } --> unica accion a realizar
+    2.if(condicion){
+
+    }else{
+
+    } --> dos opciones
+    3. if(condicion1){
+
+    }else if(condicion2){
+
+    } else {
+
+    }--> multialternativa

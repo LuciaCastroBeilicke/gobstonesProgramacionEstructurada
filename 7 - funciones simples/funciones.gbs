@@ -1,0 +1,120 @@
+//1
+function cantidadDeBolitasTotales() {
+    /*
+        PROPÓSITO:  Describe la cantidad de bolitas totales en la celda actual
+        TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (
+            nroBolitas(Azul)  +
+            nroBolitas(Negro) +
+            nroBolitas(Rojo)  +
+            nroBolitas(Verde)
+            )
+}
+//probamos asi
+program{
+    return (cantidadDeBolitasTotales())
+}
+//1b
+
+function hayMasDe5EnTotal(){
+    /*
+    PROPÓSITO: indica si hay mas de cinco bolitas en la celda actual
+    TIPO: bool
+
+    */
+    return (cantidadDeBolitasTotales() > 5)
+}
+//1c
+function hay5BolitasEnTotal(){
+    /*
+    PROPÓSITO: indica si hay cinco bolitas en total en la celda actual
+    TIPO: bool
+
+    */
+    return (cantidadDeBolitasTotales() == 5)
+}
+//1d
+function hayMenosDe5EnTotal(){
+    /*
+    PROPÓSITO: indica si hay menos de cinco bolitas en la celda actual
+    TIPO: bool
+
+    */
+    return (cantidadDeBolitasTotales() < 5)
+}
+//1e
+function hayBolitasDeTodosLosColores() {
+    /*
+        PROPÓSITO:  Indica si hay bolitas de todos los colores  en la celda actual
+        TIPO: bool
+    */
+    
+    return (hayBolitas(Azul) && hayBolitas(Negro) && hayBolitas(Verde) && hayBolitas(Rojo) )
+}
+//1f ok
+function esCeldaVacia() {
+    /*
+        PROPÓSITO:  Indica si la celda actual está vacia
+        TIPO: booleano
+    */
+    
+    return (not hayBolitas(Azul) &&  
+            not hayBolitas(Negro) && 
+            not hayBolitas(Verde) && 
+            not hayBolitas(Rojo) )
+            //ó
+            // return (not (hayBolitas(Azul) ||  
+            // not hayBolitas(Negro) || 
+            // not hayBolitas(Verde) || 
+            // not hayBolitas(Rojo)) )
+}
+//1g
+
+//2 biblioteca
+//2a
+function esCeldaVacia() {
+    /*
+        PROPÓSITO:  Indica si la celda actual está vacia
+        TIPO: booleano
+    */
+    
+    return (not hayBolitas(Azul) &&  
+            not hayBolitas(Negro) && 
+            not hayBolitas(Verde) && 
+            not hayBolitas(Rojo) )
+            //ó
+            // return (not (hayBolitas(Azul) ||  
+            // not hayBolitas(Negro) || 
+            // not hayBolitas(Verde) || 
+            // not hayBolitas(Rojo)) )
+}
+//2b
+function tieneUnaDeCada() {
+    /*
+        PROPÓSITO:  Indica si la celda tiene al menos una bolita de cada color
+        TIPO: booleano
+    */
+    
+    return ( hayBolitas(Azul) &&  
+             hayBolitas(Negro) && 
+             hayBolitas(Verde) && 
+             hayBolitas(Rojo) )
+           
+}
+//2c
+function esCeldaConBolitas() {
+    /*
+        PROPÓSITO:  Indica si la celda tiene al menos una bolita de cualquier color
+        TIPO: booleano
+    */
+    
+    return ( hayBolitas(Azul) || 
+             hayBolitas(Negro) ||
+             hayBolitas(Verde) ||
+             hayBolitas(Rojo) )
+           
+}

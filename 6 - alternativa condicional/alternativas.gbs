@@ -1,0 +1,155 @@
+//2
+nroBolitas(Rojo) > 5
+nroBolitas(Rojo) + nroBolitas(Negro) >= 9
+not puedeMover(Norte) &&  not puedeMover(Este)
+not (hayBolitas(Rojo) || hayBolitas(Negro) || hayBolitas(Verde) || hayBolitas(Azul))
+not (puedeMover(Este) || not puedeMover(Oeste) || not puedeMover(Sur) || not puedeMover(Norte))
+
+//3
+//a. OK
+procedure SacarUnaFicha_SiSePuede(colorDeLaFicha){
+/*
+    PROPOSITO: Sacar una sola ficha de color *colorDeLaFicha* si HUBIERA UNA EN LA CELDA ACTUAL.
+    PARAMETROS:
+        *colorDeLaFicha: Color. Indica el color de la ficha.
+    PRECONDICIONES: ninguna.
+*/
+    if(hayBolitas(colorDeLaFicha)){
+        SacarFichaDeColor_(colorDeLaFicha)
+    }
+    //FUNCIONES
+    if(hayFichasDeColor_(colorDeLaFicha))
+}
+
+function hayFichasDeColor_(colorDeLaFicha) {
+    /*
+        PROPÓSITO:  Indica si hay fichas de color *colorDeLaFicha*
+        PARÁMETROS:
+            * colorDeLaFicha: Color - Indica el color de la fecha a evaluar.
+        TIPO: Booleano
+        PRECONDICIONES: Ninguna
+            
+    */
+    
+    return (hayBolitas(colorDeLaFicha))
+}
+
+procedure SacarFichaDeColor_(color){
+    /*
+    PROPOSITO: Sacar una sola ficha de color *colorDeLaFicha* de LA CELDA ACTUAL.
+    PARAMETROS:
+        *colorDeLaFicha: Color. Indica el color de la ficha.
+    PRECONDICIONES: Debe haber al menos una ficha de color *color*.
+    OBSERVACIONES: Una ficha se representa con una bolita de color *color*
+*/
+    Sacar(color)
+}
+//b ok
+procedure DesempatarParaElLocal_Contra_(colorDelLocal,colorDelVisitante){
+/*
+    PROPÓSITO: Otorga un punto para el equipo local de color *colorDelLocal*,
+                en caso de empate con el equipo de color *colorDelVisitante* .
+    PRECONDICIONES: Ninguna
+    PARÁMETROS:
+        *colorDelLocal - Color. El color del equipo locla
+        *colorDelVisitante - Color. El color del equipo visitnte
+    
+*/
+
+    if(nroBolitas(colorDelLocal) == nroBolitas(colorDelVisitante)){
+        PonerUnPuntoParaElLocal_(colorDelLocal)
+    }
+    if(hayEmpateEntre_yEntre_(colorDelLocal,colorDelVisitante)){
+        PonerUnPuntoParaElLocal_(colorDelLocal)
+    }
+}
+function hayEmpateEntre_yEntre_(colorDelLocal, colorDelVisitante) {
+    /*
+        PROPÓSITO:  Indica si hay empate entre el equipo *colorDelLocal* y el equipo *colorDelVisitante*
+        PARÁMETROS:
+            * colorDelLocal: Color - Indica el color....
+            * colorDelVisitante: Cololor - descripción.
+        TIPO: Bool
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (nroBolitas(colorDelLocal) == nroBolitas(colorDelVisitante))
+}
+procedure  PonerUnPuntoPara_(colorDelEquipo){
+/*
+    PROPÓSITO: Poner un punto para el equipo *colorDelEquipo* 
+    PRECONDICIONES: Ninguna
+    PARÁMETROS:
+        *colorDelEquipo - Color. El color del equipo.
+    OBSERVACIONES: un punto se representa con una bolita de color * color del equipo*
+*/
+
+    Poner(colorDelEquipo)
+
+}
+
+//c
+
+procedure ExpandirBacteriaDeLaColonia(){
+/*
+    PROPÓSITO:
+    PRECONDICIONES:
+   
+    
+*/
+}
+
+procedure PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha){
+  /*
+    PROPÓSITO: 
+    PARÁMETROS:
+    PRECONDICIONES:
+        *colorDeLaFlecha:    
+*/  
+}
+
+//4
+//a ok
+procedure Poner_Si_(color,condición){
+    /*
+        PROPÓSITO: Poner bolita de color *color* en la celda actual si se cumpple la condicion *condicion*
+        PARÁMETROS: 
+            *color - Color. Representa el color
+            *condición - Booleano. Representa la condicion que se debe poner cumplir par aponer la bolita
+        PRECONDICIONES: ninguna
+
+    */
+    if(condicion){
+        Poner(color)
+    }
+}
+//b ok
+procedure Sacar_Si_(color,condición){
+    /*
+        PROPÓSITO: Sacar bolitas de color *color* si se cumple *condicion*
+        PARÁMETROS: 
+            *color - Color. Representa el color
+            *condición - Booleano. Representa la condicion
+        PRECONDICIONES: en el caso que se cumpla la condicion *condicion*, debe haber una bolita *color*.
+
+    */
+    if(condicion){
+        Sacar(color)
+    }
+}
+//c
+procedure Mover_Si_(dirección,condición){
+    /*
+        PROPÓSITO: Mover hacia *direccion* si se cumple *condicion*
+        PARÁMETROS: 
+            *dirección - dirección. Representa la dirección hacia donde se moverá el cabezal
+            *condición - Booleano. Representa la condicion
+        PRECONDICIONES: Debe haber al menos una celda hacia el *direccion* si se cumple la condicion *condicion*
+
+    */
+    if(condicion){
+        Mover(dirección)
+    }
+}
+//d
