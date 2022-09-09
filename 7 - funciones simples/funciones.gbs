@@ -18,12 +18,12 @@ function cantidadDeBolitasTotales() {
 program{
     return (cantidadDeBolitasTotales())
 }
-//1b
 
+//1b
 function hayMasDe5EnTotal(){
     /*
     PROPÓSITO: indica si hay mas de cinco bolitas en la celda actual
-    TIPO: bool
+    TIPO: booleano
 
     */
     return (cantidadDeBolitasTotales() > 5)
@@ -32,28 +32,33 @@ function hayMasDe5EnTotal(){
 function hay5BolitasEnTotal(){
     /*
     PROPÓSITO: indica si hay cinco bolitas en total en la celda actual
-    TIPO: bool
+    TIPO: booleano
 
     */
     return (cantidadDeBolitasTotales() == 5)
 }
 //1d
-function hayMenosDe5EnTotal(){
+function hayAlMenosDe5EnTotal(){
     /*
-    PROPÓSITO: indica si hay menos de cinco bolitas en la celda actual
-    TIPO: bool
+    PROPÓSITO: indica si hay al menos de cinco bolitas en la celda actual
+    TIPO: booleano
 
     */
-    return (cantidadDeBolitasTotales() < 5)
+    return (cantidadDeBolitasTotales() <= 5)
 }
 //1e
 function hayBolitasDeTodosLosColores() {
     /*
         PROPÓSITO:  Indica si hay bolitas de todos los colores  en la celda actual
-        TIPO: bool
+        TIPO: booleano
     */
     
-    return (hayBolitas(Azul) && hayBolitas(Negro) && hayBolitas(Verde) && hayBolitas(Rojo) )
+    return (
+            hayBolitas(Azul) &&
+            hayBolitas(Negro) &&
+            hayBolitas(Verde) &&
+            hayBolitas(Rojo) 
+            )
 }
 //1f ok
 function esCeldaVacia() {
@@ -62,10 +67,7 @@ function esCeldaVacia() {
         TIPO: booleano
     */
     
-    return (not hayBolitas(Azul) &&  
-            not hayBolitas(Negro) && 
-            not hayBolitas(Verde) && 
-            not hayBolitas(Rojo) )
+    return (not hayBolitasDeTodosLosColores())
             //ó
             // return (not (hayBolitas(Azul) ||  
             // not hayBolitas(Negro) || 
@@ -73,7 +75,20 @@ function esCeldaVacia() {
             // not hayBolitas(Rojo)) )
 }
 //1g
-
+function faltaAlgunaBolita() {
+    /*
+        PROPÓSITO:  Indica si le falta alguno de los colores
+        TIPO: Booleano
+    */
+    
+    return (
+            (hayBolitas(Azul) ||  
+            hayBolitas(Negro) || 
+            hayBolitas(Verde) || 
+            hayBolitas(Rojo) ) && 
+            not esCeldaVacia()
+            )
+}
 //2 biblioteca
 //2a
 function esCeldaVacia() {
@@ -117,4 +132,114 @@ function esCeldaConBolitas() {
              hayBolitas(Verde) ||
              hayBolitas(Rojo) )
            
+}
+
+//3 no corregido
+
+// aliados bolitade color Negro
+// enemigos bolita de color Rojo por cada soldado
+function cantidadDeSoldadosDe_(colorDelEjército()) {           
+
+    /*
+        PROPÓSITO:  Describe la cantidad de soldados del ejercito *colorDelEjército* en la celda actual.
+        TIPO: Número
+        PARÁMETRO:
+            *colorDelEjército: Color - Indica el color del ejército.
+    */
+    
+    return (nroBolitas(colorDelEjército))
+}
+//3b
+procedure EnviarAliadosParaDuplicarEnemigos() {
+    /*
+        PROPÓSITO: agrega soldados aliados en la celda actual
+                     en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
+        PRECONDICIONES:
+            * Debe haber al menos un soldado enemigo en la celda actual.
+        OBSERVACIONES:
+            *Un soldado se representa con una bolita Negra
+            *Un enemigo se representa con una bolita Roja
+    */
+    repeat (cantidadDeSoldadosDe_(Rojo)) {
+        Poner(Negro) * 2
+    }
+}
+
+procedure PelearLaBatalla() {
+    /*
+        PROPÓSITO:  Simula una batalla
+        PRECONDICIONES:Debe haber al menos 2 senemiagos y 3 aliados
+            
+    */
+    repeat(cantidadDeSoldadosDe_(Rojo) div 2 * 3){ //9
+        Sacar(Negro) 
+    }
+     
+     repeat(cantidadDeSoldadosDe_(Rojo)){ //6
+        Sacar(Rojo) 
+    } 
+    
+}
+
+//3c
+function esCeldaIndefensa() {
+    /*
+        PROPÓSITO:  Indica si la celda se encuentra indefensa, sin soldados
+        TIPO: Booleano
+    */
+    
+    return ((cantidadDeSoldadosDe_(Negro) + cantidadDeSoldadosDe_(Rojo)) == 0)
+}
+
+//3d
+function estadoDeEmergencia() {
+    /*
+        PROPÓSITO:  indica si existen más de 100 soldados enemigos, y además la                         
+                    celda está indefensa.
+        TIPO: Booleano
+    */
+    
+    return (cantidadDeSoldadosDe_(Rojo) > 100 && esCeldaIndefensa())
+}
+//3e
+function hayAlMenos_AliadosPorCada_Atacantes(cantidadDefensa, cantidadAtaque) {
+    /*
+        PROPÓSITO:  Indica si hay por lo menos ​cantidadDefensa soldados aliados por cada                       
+                    cantidadAtaque soldados enemigos en la celda actual
+        TIPO: Booleano
+    */
+    
+    return (cantidadDefensa == cantidadAtaque * 2)
+}
+//3f
+function aliadosNecesariosParaDefensaEficazContra_(cantidadDeSoldadosEnemigosAdicionales) {
+    /*
+        PROPÓSITO: escribe el número de soldados aliados que faltan para defender la celda actual 
+        si a ella se suman la cantidad de soldados enemigos dada
+        TIPO: Número
+        PRECONDICIÓN: No hay sufiencientes aliados.
+    */
+    //2 soldados enemigos y 3 aliados
+
+    return (cantidadDeSoldadosEnemigosAdicionales * 3 div 2 )
+}
+
+//5a
+procedure GerminarSemilla() {
+    /*
+        PROPÓSITO:  Germinar Semilla
+        PRECONDICIONES:
+            * ....
+    */
+
+    
+    
+}
+function haySemilla() {
+    /*
+        PROPÓSITO:  Germinar Semilla
+        TIPO: Tipo
+       
+    */
+    return ()
 }

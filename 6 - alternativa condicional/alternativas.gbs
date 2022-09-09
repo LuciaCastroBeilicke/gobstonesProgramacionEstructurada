@@ -153,3 +153,26 @@ procedure Mover_Si_(dirección,condición){
     }
 }
 //d
+
+//6 
+procedure Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda)() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            *cantidadADepositar
+            *moneda
+        PRECONDICIONES:
+            * ....
+    */
+   
+    if (moneda == Verde) {
+        cantidadADepositar div 80
+    elseif (moneda == Azul) {
+        cantidadADepositar div 90
+    }elseif (moneda == Rojo) {
+        cantidadADepositar div 12
+    } else {
+        cantidadADepositar
+    }
+    
+}
