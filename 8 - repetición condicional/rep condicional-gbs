@@ -1,0 +1,29 @@
+//1 ok
+procedure IrAlBorde(dirección){
+    while (puedeMover(dirección)) {
+        Mover(dirección)
+    }
+}
+//2 ok
+procedure SacarTodasLasDeColor_(color){
+    while (hayBolitas(color)) {
+        Sacar(color)
+    }
+}
+//3 ok
+procedure VaciarFilaDe_(color) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    IrAlBorde(Oeste)    //INICIO DE RECORRIDO
+    while (puedeMover(Este)) {
+        SacarTodasLasDeColor_(color) //PROCESO 
+        Mover(Este) //MOVIMIENTO
+    }
+    SacarTodasLasDeColor_(color) //FIN DEL RECORRIDO
+}

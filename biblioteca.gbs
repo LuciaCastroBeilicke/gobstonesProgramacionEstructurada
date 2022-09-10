@@ -55,7 +55,7 @@ procedure Sacar_DeColor_(cantidadASacar, colorASacar){
     }
 }
 
-//6 no corregido BIBLIOTECA (EXPRESIONES)
+//6 no corregido BIBLIOTECA (EXPRESIONES 5)
 procedure SacarTodasLasDeColor_(colorASacar){
     /*
         PROPÓSITO:  Saca todas las bolitas de la celda actual cuyo color sea *colorASacar*
@@ -68,7 +68,7 @@ procedure SacarTodasLasDeColor_(colorASacar){
     
 }
 
-//4 corregido(alternativa)
+//4 corregido(alternativa 6)
 //a ok
 procedure Poner_Si_(color,condición){
     /*
@@ -112,7 +112,7 @@ procedure Mover_Si_(dirección,condición){
     }
 }
 
-//2 NO CORREGIDO biblioteca (FUNCIONES)
+//2 NO CORREGIDO biblioteca (FUNCIONES 7)
 //2a
 function esCeldaVacia() {
     /*
@@ -156,3 +156,5 @@ function esCeldaConBolitas() {
              hayBolitas(Rojo) )
            
 }
+
+//REPETICION CONDICIONAL EJ6

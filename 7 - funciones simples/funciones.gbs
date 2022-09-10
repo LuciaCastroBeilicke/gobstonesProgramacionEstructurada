@@ -223,7 +223,55 @@ function aliadosNecesariosParaDefensaEficazContra_(cantidadDeSoldadosEnemigosAdi
 
     return (cantidadDeSoldadosEnemigosAdicionales * 3 div 2 )
 }
+//4 corregido
+function sePuedeAterrizarA_Hacia_(distanciaAPlaneta, direcciónAPlaneta) {
+    /*
+        PROPÓSITO:  Indica si hay un planeta a *distanciaAPlaneta* en la dirección *direcciónAPlaneta*
+        TIPO: Booleano
+        PARÁMETROS:
+            *distanciaAPlaneta: Número -  cantidad de la celdas de distancia
+            *direcciónAPlaneta: dirección - direccion hacia donde se encuentra el planeta
+        PRECONDICIONES: 
+            *El cabezal se debe encontrar sobre la nave.
+            *Debe haber al menos *distaciaAPlaneta* en dirección *direcciónAPlaneta*
+    */
+    
+    return (hayUnPlaneta)
+}
 
+//4bok
+function hayUnPlanetaRecto() {
+    /*
+        PROPÓSITO:  Indica si existe un planeta en cualquiera de las direcciones,
+                    a cualquier distacia.
+       
+        TIPO: Booleano
+        PRECONDICIONES:
+            * La nave se encuentra a 3 celdas de distacia de los bordes
+    */
+    
+    return (hayUnPlanetaRectoHaciaEl_(Norte) ||
+    hayUnPlanetaRectoHaciaEl_(Este) ||
+    hayUnPlanetaRectoHaciaEl_(Sur) ||
+    hayUnPlanetaRectoHaciaEl_(Norte))
+}
+//ok
+function hayUnPlanetaRectoHaciaEl_(dirección) {
+    /*
+        PROPÓSITO: Indica si existe un planeta en dirección al *dirección*,
+                a 3 celdas o menos de distancia
+        PARÁMETROS:
+            * dirección: Dirección - La dirección hacia donde buscaremos el planeta.
+        TIPO: Booleano
+        PRECONDICIONES:
+            *El cabezal se encientra sobre la nave
+            *debe haber al menos 3 celdas al *direccion* desde la celda actual
+    */
+    
+    return (hayUnPlanetaA_Hacia_(1 , dirección)||
+    hayUnPlanetaA_Hacia_(2 , dirección)
+    hayUnPlanetaA_Hacia_(3 , dirección))
+}
 //5a
 procedure GerminarSemilla() {
     /*
@@ -243,3 +291,125 @@ function haySemilla() {
     */
     return ()
 }
+
+//d ok
+procedure Polinizar(){
+    /*
+    PROPÓSITO: Polinaza la celda lindante al Este con la cantidad de semillas dada 
+                por la cantidad de árboles de la celda actual menos 3
+    PRECONDICIONES: Ninguna.
+
+    */
+    if(PuedePolinizar()){
+        Poner_SemillasAl_(cantidadDeárboles-3, Este)
+    }
+
+}
+
+function PuedePolinizar() {
+    /*
+        PROPÓSITO: Indica si se puede polinzar la celda lindante al este
+        TIPO: Boolenao
+        PRECONDICIONES:
+            *Ninguna
+    */
+    
+    return (puedeMover(Este) && cantidadDeárboles > 3)
+}
+
+function cantidadDeárboles() {
+    /*
+        PROPÓSITO: Describe la cantidad de árboles
+        TIPO: Número
+    */
+    
+    return (nroBolitas(Verde))
+}
+
+procedure Poner_SemillasAl_(cantidadDeSemillas, dirección){
+    /*
+    PROPÓSITO: Pone cantidadDeSemillas semillas en la celda lindante al direccion
+    PARÁMETROS:
+        *cantidadDeSemillas: numero - la cantidad de semillas a poner
+        *dirección: direccion. direccion hacua la cual poner semillas
+    PRECONDICIONES: Debe haber una celda lindante al *direccion*
+
+    */
+    Mover(dirección)
+    Poner_semillas(cantidadDeSemillas)// Poner_DeColor(cantidadDeSemillas, Rojo)
+}
+
+
+//6 ok
+function pesos(){
+    /*
+        PROPÓSITO: Describe el color con el que se representan los pesos.
+        Tipo: Color.
+    */
+    return(Negro)
+}
+
+function euros(){
+    /*
+        PROPÓSITO: Describe el color con el que se representan los euros.
+        Tipo: Color.
+    */
+    return(Azul)
+}
+
+function ahorrosEn_(moneda) {
+    /*
+        PROPÓSITO:  Describe la cantidad de unidades de *moneda* que 
+                    hay en la cuenta
+        PARÁMETROS:
+            * moneda: Color - Describe la moneda.
+        TIPO: Número
+        
+    */
+    
+    return (nroBolita(moneda))
+}
+
+function cuantosDolaresSePuedenComprarCon_Pesos(cantidadDePesos){
+    /*
+        PROPÓSITO: Describe la cantidad de dólares que se pueden
+                comprar con *cantidadDePesos*
+        PARÁMETROS: 
+            *cantidadDePesos: Número - la cantidad de pesos a cotizar
+        TIPO: Número
+    */
+    //primero consultamos cuanto esta el dolar
+    return(cantidadDePesos div cotizaciónDolarVenta())
+}
+
+function cotizaciónDolarVenta() {
+    /*
+        PROPÓSITO:  Describe la cotizavción de una unidad de dolár
+                    para la venta.
+        TIPO: Número
+       
+    */
+    return (275)
+}
+
+function cuantosPesosSiVendo_Dólares(cantidadDeMonedaExtranjera){
+    /*
+        PROPÓSITO: Describe la cantidad de pesos que se pueden
+                comprar con *cantidadDeMonedaExtranjera*
+        PARÁMETROS: 
+            *cantidadDeMonedaExtranjera: Número - la cantidad de 
+                            dólares a cotizar
+        TIPO: Número
+    */
+    return(cotizaciónDolarCompra() *cantidadDeMonedaExtranjera )
+}
+function cotizaciónDolarCompra() {
+    /*
+        PROPÓSITO:  Describe la cotizavción de una unidad de dolár
+                    para la compra.
+        TIPO: Número
+       
+    */
+    return (270)
+}
+
