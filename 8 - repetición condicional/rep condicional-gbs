@@ -27,3 +27,86 @@ procedure VaciarFilaDe_(color) {
     }
     SacarTodasLasDeColor_(color) //FIN DEL RECORRIDO
 }
+//4 no corregido
+procedure VaciarFilaDe_HaciaEl_(color, dirección) {
+    /*
+        PROPÓSITO: Quita todas las bolitas de color *color* 
+                    desde la fila desde donde se encuentra el 
+                    cabezal hasta el final hacia el *dirección*
+        PARÁMETROS:
+            * color: Color - Indica el color de las bolitas a quitar.
+            * dirección: Dirección - Indica la dirección de la fila.
+        PRECONDICIONES:
+            * Debe haber al menos una celda lindante hacia el *dirección*
+            *Debe haber bolitas???
+    */
+    while (puedeMover(dirección)) {
+        if(hayBolitas(color)){
+            Sacar(color)
+        }
+    }
+}
+//4a) Debe tomar los parámetros Este u Oeste
+//4b)Vaciar_De_HaciaEl_(fila/columna, color, dirección)
+
+//5a no corregido
+procedure VaciarTableroDe_(color){
+    /*  
+        PROPÓSITO: Saca todas las bolitas que haya en el tablero 
+                    de color *color* por fila.
+        PARÁMETROS:color: Color. Indica el color de las bolitas a quitar
+        PRECONDICIONES:
+    */
+    IrAlBorde(Sur)
+    while(puedeMover(Norte)){
+        VaciarFilaDe_(color) //NO ES NECESARIO DEFINIRLA
+        Mover(Norte)
+    }
+    VaciarFilaDe_(color)
+    
+}
+//5b no cor
+procedure VaciarTableroDe_(color) {
+    /*
+        PROPÓSITO:  Saca todas las bolitas que haya en el tablero 
+                    de color *color* por celda.
+       PARÁMETROS:color: Color. Indica el color de las bolitas a quitar
+        PRECONDICIONES:
+            * ....
+    */
+    
+}
+//faltan 5 c y 5 d
+
+//6a BIBLIOTECA NO corregido
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO: Ubical el cabezal en la primera celda en diagonal 
+                    *dirPrincipal* y *dirSecundaria*
+        PARÁMETROS:
+            * dirPrincipal: Dirección - descripción.
+            * dirSecundaria: Dirección - descripción.
+        PRECONDICIONES:
+            * Ambos parámetros no deben ser opuestos
+    */
+    while (puedeMover(dirPrincipal)) {
+        Mover(dirPrincipal)
+    }
+     
+    while (puedeMover(dirSecundaria)) {
+        Mover(dirSecundaria)
+    }
+}
+
+//6b BIBLIOTECA NO corregdo
+procedure haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * dirPrincipal: Dirección - descripción.
+            * dirSecundaria: Dirección - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    
+}
