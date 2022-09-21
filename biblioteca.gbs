@@ -206,3 +206,157 @@ procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria){
     Mover(dirSecundaria)
    }
 }
+// 9 variables
+//2 BIBLIOTECA OK
+function hayBolitas_Al_(color, dirección){
+    /*
+        PROPÓSITO: Indica si hay bolitas de color *color* en 
+            la celda lindante
+        PRECONDICION: Ninguna
+        PARÁMETROS:
+            *color: Color. Indica el color de la bolita a buscar
+            *dirección: Dirección. Indica la direccion
+
+    */
+    return(puedeMover(dirección) && tieneBolitas_Al_(color, dirección))
+
+}
+//12ok BIBLIOTECA
+function máximoEntre_Y_(primerNúmero, segundoNúmero){
+    /*
+        PRPÓSTIO: Describe l numero maximo entre *primer* y *segundo*
+        PRECONDICIONES: Ninguna.
+        TIPO: número
+        PARÁMETROS:
+        *primerNúmero: Número. EL primer número a comparar
+        *segundoNúmero: Número. El primero numero a comparar
+    */
+    //forma 1
+    númeroMáximo := 0
+    if(primerNúmero>segundoNúmero){
+        númeroMáximo:= primerNúmero
+    }else{
+        númeroMáximo := segundoNúmero
+    }
+    return(númeroMáximo)
+    //forma 2
+    //cuando necesitamos usar alt en la funcion usar choose
+    return(choose
+        primerNúmero when (primerNúmero>segundoNúmero)
+        segundoNúmero otherwise
+    )
+}
+//17 ok BIBLIOTECA
+function distanciaAlBorde_( dirección) {
+    /*
+        PROPÓSITO:  Describe la cantidad de celdas que hay desde la celda actual y el bode en direccion *direccion*
+        PARÁMETROS:
+            * dirección: Dirección - descripción.
+        TIPO: Numero
+        PRECONDICIONES:
+            * Ninguna
+    */
+    distanciaAlBorde := 0
+    while (puedeMover(dirección)) {
+        Mover(dirección)
+        distanciaAlBorde := distanciaAlBorde + 1
+    }
+    return (distanciaAlBorde)
+}
+//18 ok BIBLIOTECA
+function coordenadaX() {
+    /*
+        PROPÓSITO:  Describe la coordenada X donde se encuentra el cabezal
+        TIPO: número
+        PRECONDICIONES:
+            * Ninguna
+    */
+    return(distanciaAlBorde_(Oeste))
+    
+}
+function coordenadaY() {
+    /*
+        PROPÓSITO:  
+        TIPO: Número
+        PRECONDICIONES:
+            * 
+    */
+        return(distanciaAlBorde_(Sur))
+
+}
+//19 ok BIBLIOTECA
+function nroFilas() {
+    /*
+        PROPÓSITO:  Describe el nro de filas del tablero
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Número
+        PRECONDICIONES:
+            * ....
+    */
+    IrAlBorde(Norte)
+    return (distanciaAlBorde_(Sur) +1)
+
+    //ó
+    //return(distanciaAlBorde_(Sur) + distanciaAlBorde_(Norte))
+}
+
+//20 ok BIBLIOTECA
+function nroVacias(){
+    /*
+        PROPÓSITO:  Describe el nro de celdas vacias en el tablero
+         TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+        OBSERVACIONES: recorrido de acumulacion contando las celdas vacias del tablero
+    */
+    IrAlInicioDeUnRecorridoAl_YAl_(Este, Norte)
+    celdasVaciasVistas := unoSi_CeroSino(esCeldaVacia())
+    while(haySiguienteCeldaEnUnRecorridoAl_YAl_(Este, Norte))
+    {
+        // if (esCeldaVacia()) {
+        //     celdasVaciasVistas := celdasVaciasVistas +1
+        // }
+        //otra forma:
+        //cantidadCeldasVacias := unaFuncion()
+
+        
+        IrAlInicioDeUnRecorridoAl_YAl_(Norte,Este)
+        //usar
+        cantidadCeldasVacias := cantidadCeldasVacias + unoSi_CeroSino(esCeldaVacia())
+    }
+    return (cantidadCeldasVacias)
+
+}
+
+// function unaFuncion(cantidadCeldasVacias){
+//     return(choose cantidadCeldasVacias +1 when esCeldaVacia()
+//             cantidadCeldasVacias otherwise)
+// }
+
+// function unoSi_CeroSino(condicion){
+    /*
+        PROPÓSITO: Describe 1 si se cumple la condición *condición*
+        TIPO: Número
+        PARÁMETROS:
+        * Condición: Booleano. Describe la condicion a evaluar
+    */
+//     return(choose 1 when condicion
+//             0 otherwise)
+// }
+
+//22 biblioteca ok
+function nroBolitasTotalDeColor_(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
