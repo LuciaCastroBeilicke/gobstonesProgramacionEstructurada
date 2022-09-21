@@ -176,7 +176,7 @@ procedure UnaDeCadaEnTodoElTablero(){
    
 }
 
-//7c
+//7c ok
 procedure RellenarCon_EnAusenciaDe_EnElTablero(colorAPoner,colorAMirar){
     /*
         PROPÓSITO:  Rellenar el tablero con *colorAPoner* en ausencia de *colorAMirar*,
@@ -211,7 +211,7 @@ procedure RellenarCon_EnAusenciaDe_(colorAPoner, colorAMirar) {
     
 }
 
-//7d
+//7d ok
 procedure CompletarHasta_De_EnElTablero(cantidad,color){
     /*
         PROPÓSITO: Pone en cada celda del tablero tantas bolitas de color *color* hasta completar
@@ -244,3 +244,128 @@ procedure CompletarHasta_De_(cantidad, color) {
     Poner_VecesDe_(cantidad - nroBolitas(color), color)
 }
 
+//8
+procedure IrHastaLaBolitaRojaHacia_(direcciónABuscar){
+    /*
+        PROPÓSITO: Mover en cabeza a la celda más proxima a la actual si 
+        PARÁMETROS:
+            *direcciónABuscar:
+        PRECONDICIONES: 
+            *Debe haber al menos una celda lindante en *direcciónABuscar*
+    */
+    if(not hayBolitas(Rojo)){
+        Mover(direcciónABuscar)
+    }
+
+}
+
+//9
+procedure IrALaSiguienteVacíaHacia_(dirección) {
+    /*
+        PROPÓSITO:  
+        PARÁMETROS:
+            * dirección: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    if(puedeMover(dirección) && ){
+        Mover(dirección)
+    } 
+}
+
+//10
+procedure IrHastaLaQueTengaUnaDeCada() {
+    /*
+        PROPÓSITO:  ....
+        PRECONDICIONES:
+            * ....
+    */
+     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este) //INICIO DEL RECOORIDO
+     while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)){
+        CompletarHasta_De_()//proceso
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)//mover
+    }
+    CompletarHasta_De_()//fin del recorrido
+    
+}
+
+
+//11 papel
+//12 papel
+
+//13 no corregido
+function esDepósitoCentral() {
+    /*
+        PROPÓSITO:  Indica si es o no depósito central.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (nroBolitas(Negras) == 3)
+}
+function esDepósitoLocal(){
+      /*
+        PROPÓSITO:  Indica si es o no depósito local.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Ninguna
+    */
+    return(nroBolitas(Negras) == 2)
+}
+ 
+
+procedure IrDeCentralAlLocal_(dirección){
+    /*
+        PROPÓSITO: Va del depósito central al local
+        PARÁMETRO: dirección - Dirección. Indica la dirección a la que se encuentra el deposito local
+    */
+    while (not esDepósitoLocal) {
+        Mover(dirección)
+    }
+}
+
+procedure IrDelLocal_ACentral(dirección){
+     /*
+        PROPÓSITO: Va del depósito local al central
+        PARÁMETRO: dirección - Dirección. Indica la dirección en la que se encuentra el deposito local
+    */
+     while (not esDepósitoCentral) {
+        Mover(opuesto(dirección))
+    }
+}
+
+//una bolita negra marca el camino de central a local,●cada bolita azul marca una unidad de mercadería.
+
+procedure Llevar_MercaderíasAlLocal_(cantidad,dirección){
+    /*
+        PROPÓSITO: Lleva *cantidad* unidades de mercaderias al Depósito local ubicado al *ubicación*
+        PARÁMETROS:
+            *cantidad - Número. Indica la unidad de mercaderia a llevar
+            *dirección - Dirección. Indica la dirección hacia la cual se encuentra el depósito local
+        PRECONDICIONES:
+    */
+    if(nroBolitas(Azul) >= cantidad){
+        Sacar_DelCentral(cantidad)
+        IrDeCentralAlLocal_(dirección)
+        Poner_UnidadesDeMercaderia()
+    }
+}
+
+procedure  Sacar_DelCentral(cantidad){
+    /*
+    */
+    repeat (cantidad) {
+        Sacar(Azul)
+    }
+}
+
+procedure Poner_UnidadesDeMercaderia(cantidad){
+    /*
+    */
+ repeat (cantidad) {
+        Poner(Azul)
+    }
+}
+
+Traer_MercaderíasDelLocal_(cantidad,dirección)​

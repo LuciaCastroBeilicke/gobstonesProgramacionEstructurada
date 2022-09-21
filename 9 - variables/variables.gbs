@@ -1,0 +1,266 @@
+//funciones con procesamiento cuando quiero saber el valor de la celdas vecnias
+//variables cuando queremos recordar un valor
+//1
+function tieneBolitas_Al_(color, dirección){
+    /*
+        PROPÓSITO: Indica si hay bolitas de color *color* en la celda lindante
+                    en dirección *dirección*.
+        PRECONDICIONES: Debe haber al menos una celda en dirección *dirección*
+        TIPO: Boolenao
+        PARÁMETROS:
+            *color: Color. El color de las bolitas a buscar.
+            *dirección: Dirección. La dirección en la cual buscar buscar las bolitas
+    */
+    Mover(dirección)
+    return (hayBolitas(color))
+}
+
+//2 BIBLIOTECA OK
+function hayBolitas_Al_(color, dirección){
+    /*
+        PROPÓSITO: Indica si hay bolitas de color *color* en 
+            la celda lindante
+        PRECONDICION: Ninguna
+        PARÁMETROS:
+            *color: Color. Indica el color de la bolita a buscar
+            *dirección: Dirección. Indica la direccion
+
+    */
+    return(puedeMover(dirección) && tieneBolitas_Al_(color, dirección))
+
+}
+//3
+function hayBolitas_EnElBorde_(color, dirección) {
+    /*
+        PROPÓSITO:  Indica si hay bolitas de color *color* 
+        PARÁMETROS:
+            * color: Color - descripción.
+            * dirección: Dirección - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * Ninguna
+    */
+    IrAlBorde(dirección)
+    return (hayBolitas(color))
+}
+//4
+function hayBolitas_Hacia_(color, dirección) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * color: tipo - descripción.
+            * dirección: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    while(puedeMover(dirección) && not hayBolitas(color)){
+        Mover(dirección)
+    }
+    return (hayBolitas(color))
+}
+//9 
+//propuesto por un compañero:
+procedure CopiarOrigenEnEsquina() {
+    /*
+        PROPÓSITO:  Copiar el contenido de la celda actual en las 4 esquinas del tablero
+        PRECONDICIONES:
+            * Ninguna
+    */
+    CopiarOrigenEnEsquina_(Este, Sur)
+    CopiarOrigenEnEsquina_(Este, Norte)
+    CopiarOrigenEnEsquina_(Oeste, Sur)
+    CopiarOrigenEnEsquina_(Oeste, Norte)
+
+}
+
+procedure CopiarOrigenEnEsquina_(dirPpal, dirSec){
+    cantidadAzules := nroBolitas(Azul)
+    cantidadVerdes := nroBolitas(Azul)
+    cantidadNegras := nroBolitas(Azul)
+    cantidadRojas := nroBolitas(Azul)
+    IrAlBorde(dirPpal)
+    IrAlBorde(dirSec)
+    VaciarCelda()
+    Poner_DeColor_(cantidadAzules, Azul)
+    Poner_DeColor_(cantidadVerdes, Verde)
+    Poner_DeColor_(cantidadNegras, Negro)
+    Poner_DeColor_(cantidadRojas, Rojo)
+
+}
+
+procedure VaciarCelda(){
+    Sacar_DeColor(nroBolitas(Azul), Azul)
+    Sacar_DeColor(nroBolitas(Verde), Verde)
+    Sacar_DeColor(nroBolitas(Negro), Negro)
+    Sacar_DeColor(nroBolitas(Rojo), Azul)
+
+}
+//12ok BIBLIOTECA
+function máximoEntre_Y_(primerNúmero, segundoNúmero){
+    /*
+        PRPÓSTIO: Describe l numero maximo entre *primer* y *segundo*
+        PRECONDICIONES: Ninguna.
+        TIPO: número
+        PARÁMETROS:
+        *primerNúmero: Número. EL primer número a comparar
+        *segundoNúmero: Número. El primero numero a comparar
+    */
+    //forma 1
+    númeroMáximo := 0
+    if(primerNúmero>segundoNúmero){
+        númeroMáximo:= primerNúmero
+    }else{
+        númeroMáximo := segundoNúmero
+    }
+    return(númeroMáximo)
+    //forma 2
+    //cuando necesitamos usar alt en la funcion usar choose
+    return(choose
+        primerNúmero when (primerNúmero>segundoNúmero)
+        segundoNúmero otherwise
+    )
+}
+//13ok
+function direcciónDelCódigo( código) {
+    /*
+        PROPÓSITO:  Describe la direccion correspondiente al codigo dado.
+        PARÁMETROS:
+            * código: tipo - descripción.
+        TIPO: Dirección
+        PRECONDICIONES:
+            * El código debe estar entre 1 y 4
+    */
+    
+    return (choose
+        Norte when (código == 1)
+        Este when (código == 2)
+        Sur when (código == 3)
+        Oeste otherwise
+    )
+}
+
+//17 ok BIBLIOTECA
+function distanciaAlBorde_( dirección) {
+    /*
+        PROPÓSITO:  Describe la cantidad de celdas que hay desde la celda actual y el bode en direccion *direccion*
+        PARÁMETROS:
+            * dirección: Dirección - descripción.
+        TIPO: Numero
+        PRECONDICIONES:
+            * Ninguna
+    */
+    distanciaAlBorde := 0
+    while (puedeMover(dirección)) {
+        Mover(dirección)
+        distanciaAlBorde := distanciaAlBorde + 1
+    }
+    return (distanciaAlBorde)
+}
+
+//18 ok BIBLIOTECA
+function coordenadaX() {
+    /*
+        PROPÓSITO:  Describe la coordenada X donde se encuentra el cabezal
+        TIPO: número
+        PRECONDICIONES:
+            * Ninguna
+    */
+    return(distanciaAlBorde_(Oeste))
+    
+}
+function coordenadaY() {
+    /*
+        PROPÓSITO:  
+        TIPO: Número
+        PRECONDICIONES:
+            * 
+    */
+        return(distanciaAlBorde_(Sur))
+
+}
+//19 ok BIBLIOTECA
+function nroFilas() {
+    /*
+        PROPÓSITO:  Describe el nro de filas del tablero
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Número
+        PRECONDICIONES:
+            * ....
+    */
+    IrAlBorde(Norte)
+    return (distanciaAlBorde_(Sur) +1)
+
+    //ó
+    //return(distanciaAlBorde_(Sur) + distanciaAlBorde_(Norte))
+}
+
+//20 ok BIBLIOTECA
+function nroVacias(){
+    /*
+        PROPÓSITO:  Describe el nro de celdas vacias en el tablero
+         TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+        OBSERVACIONES: recorrido de acumulacion contando las celdas vacias del tablero
+    */
+    IrAlInicioDeUnRecorridoAl_YAl_(Este, Norte)
+    celdasVaciasVistas := unoSi_CeroSino(esCeldaVacia())
+    while(haySiguienteCeldaEnUnRecorridoAl_YAl_(Este, Norte))
+    {
+        // if (esCeldaVacia()) {
+        //     celdasVaciasVistas := celdasVaciasVistas +1
+        // }
+        //otra forma:
+        //cantidadCeldasVacias := unaFuncion()
+
+        
+        IrAlInicioDeUnRecorridoAl_YAl_(Norte,Este)
+        //usar
+        cantidadCeldasVacias := cantidadCeldasVacias + unoSi_CeroSino(esCeldaVacia())
+    }
+    return (cantidadCeldasVacias)
+
+}
+
+// function unaFuncion(cantidadCeldasVacias){
+//     return(choose cantidadCeldasVacias +1 when esCeldaVacia()
+//             cantidadCeldasVacias otherwise)
+// }
+
+// function unoSi_CeroSino(condicion){
+    /*
+        PROPÓSITO: Describe 1 si se cumple la condición *condición*
+        TIPO: Número
+        PARÁMETROS:
+        * Condición: Booleano. Describe la condicion a evaluar
+    */
+//     return(choose 1 when condicion
+//             0 otherwise)
+// }
+
+//22 biblioteca ok
+function nroBolitasTotalDeColor_(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
+//27 recorridos sobreenumeraticos ok
+procedure PonerUnaDeCadaColor(){
+    color := minColor()
+    while (siguiente(color) /= minColor()) {
+        Poner(color)
+        color := siguiente(color)
+    }
+    Poner(color)
+}

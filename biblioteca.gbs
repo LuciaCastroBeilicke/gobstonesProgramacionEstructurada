@@ -158,3 +158,51 @@ function esCeldaConBolitas() {
 }
 
 //REPETICION CONDICIONAL EJ6
+//6a BIBLIOTECA NO corregido
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO: Ubicar el cabezal en un recorrido hacia la direccion
+                    *dirPrincipal* y al *dirSecundaria*
+        PARÁMETROS:
+            * dirPrincipal: Dirección - la dirección principal del recorrido.
+            * dirSecundaria: Dirección - la dirección secundaria del recorrido.
+        PRECONDICIONES:
+            * La dirección *dirPrincipal* y la *dirSecundario* no pueden ser iguales ni iouestas
+    */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+//6b BIBLIOTECA NO corregdo
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  Indica si hay siguiente celda en un recorrido hacia la *dirPrincipal*
+                    y *dirSecundario*
+        PARÁMETROS:
+            * dirPrincipal: Dirección - la dirección principal del recorrido.
+            * dirSecundaria: Dirección - la dirección secundaria del recorrido.
+        TIPO: Booleano
+        PRECONDICIONES: 
+            * La dirección *dirPrincipal* y la *dirSecundario* no pueden ser iguales ni iouestas 
+    */
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+//6c
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria){
+    /*
+        PROPÓSITO:  Mueve la cabezal a la celda siguiente en *dirPrincipal* y *dirSecundaria*
+        PARÁMETROS:
+            * dirPrincipal: Dirección - descripción.
+            * dirSecundaria: Dirección - descripción.
+        PRECONDICIONES: 
+            * La dirección *dirPrincipal* y la *dirSecundario* no pueden ser iguales ni iouestas  
+            * Debe haber una celda siguiente en el recorrido
+    */
+   if(puedeMover(dirPrincipal)){
+    Mover(dirPrincipal)
+   }else{
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+   }
+}
