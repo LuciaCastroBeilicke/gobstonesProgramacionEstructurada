@@ -221,6 +221,31 @@ function hayBolitas_Al_(color, dirección){
     return(puedeMover(dirección) && tieneBolitas_Al_(color, dirección))
 
 }
+//11 BIBLIOTECA
+function mínimoEntre_Y_(primerNúmero, segundoNúmero){
+    /*
+        PRPÓSTIO: Describe l numero minimo entre *primer* y *segundo*
+        PRECONDICIONES: Ninguna.
+        TIPO: número
+        PARÁMETROS:
+        *primerNúmero: Número. EL primer número a comparar
+        *segundoNúmero: Número. El primero numero a comparar
+    */
+    //forma 1
+    númeroMínimo := 0
+    if(primerNúmero>segundoNúmero){
+        númeroMínimo:= primerNúmero
+    }else{
+        númeroMínimo := segundoNúmero
+    }
+    return(númeroMínimo)
+    //forma 2
+    //cuando necesitamos usar alt en la funcion usar choose
+    return(choose
+        primerNúmero when (primerNúmero<segundoNúmero)
+        segundoNúmero otherwise
+    )
+}
 //12ok BIBLIOTECA
 function máximoEntre_Y_(primerNúmero, segundoNúmero){
     /*
@@ -335,28 +360,70 @@ function nroVacias(){
 //             cantidadCeldasVacias otherwise)
 // }
 
-// function unoSi_CeroSino(condicion){
+ function unoSi_CeroSino(condicion){
     /*
         PROPÓSITO: Describe 1 si se cumple la condición *condición*
         TIPO: Número
         PARÁMETROS:
         * Condición: Booleano. Describe la condicion a evaluar
     */
-//     return(choose 1 when condicion
-//             0 otherwise)
-// }
+     return(choose 1 when condicion
+             0 otherwise)
+}
+
+//21
+function cantidadDeCeldasConBolitasDeColor_(color) {
+    /*
+        PROPÓSITO:  Describe la cantidad de celdas con bolitas de color *color*
+                    en el tablero
+        PARÁMETROS:
+            * color: Color - el color de la bolita.
+        TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+        ONSERVACION: recorrido de acumulacion
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    cantidadDeCeldas:= 0
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+       
+        cantidadDeCeldas := cantidadDeCeldas + unoSi_CeroSino(hayBolitas(color))
+        
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (cantidadDeCeldas)
+}
 
 //22 biblioteca ok
-function nroBolitasTotalDeColor_(parámetro1, parámetro2) {
+function nroBolitasTotalDeColor_(color) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:  Describe la cantidad de bolitas de color *color* en el tablero
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * color: Color - el color de la bolita a contar.
+        TIPO: Número
         PRECONDICIONES:
-            * ....
+            * Ninguna
+        ONSERVACION: recorrido de acumulacion
     */
-    
-    return ()
+    IrAlInicioDeUnRecorridoAl_YAl_(Este, Norte)
+    cantidadDeBolitas:= 0
+    while (haySiguienteCeldaEnUnRecorridoAl_YAl_(Este, Norte)) {
+        if (hayBolitas(color)) {
+            cantidadDeBolitas := cantidadDeBolitas + nroBolitas(color)
+        }
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (cantidadDeBolitas)
+}
+//25 
+ function unoSi_CeroSino(condicion){
+    /*
+        PROPÓSITO: Describe 1 si se cumple la condición *condición*
+        TIPO: Número
+        PARÁMETROS:
+        * Condición: Booleano. Describe la condicion a evaluar
+    */
+     return(choose 1 when (condicion)
+             0 otherwise)
 }

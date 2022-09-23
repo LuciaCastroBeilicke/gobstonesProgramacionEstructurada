@@ -314,7 +314,6 @@ function esDepósitoLocal(){
     return(nroBolitas(Negras) == 2)
 }
  
-
 procedure IrDeCentralAlLocal_(dirección){
     /*
         PROPÓSITO: Va del depósito central al local
@@ -335,8 +334,6 @@ procedure IrDelLocal_ACentral(dirección){
     }
 }
 
-//una bolita negra marca el camino de central a local,●cada bolita azul marca una unidad de mercadería.
-
 procedure Llevar_MercaderíasAlLocal_(cantidad,dirección){
     /*
         PROPÓSITO: Lleva *cantidad* unidades de mercaderias al Depósito local ubicado al *ubicación*
@@ -352,7 +349,7 @@ procedure Llevar_MercaderíasAlLocal_(cantidad,dirección){
     }
 }
 
-procedure  Sacar_DelCentral(cantidad){
+procedure Sacar_DelCentral(cantidad){
     /*
     */
     repeat (cantidad) {
