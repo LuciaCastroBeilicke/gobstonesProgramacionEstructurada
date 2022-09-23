@@ -1,15 +1,16 @@
 //funciones con procesamiento cuando quiero saber el valor de la celdas vecnias
 //variables cuando queremos recordar un valor
 //1
-function tieneBolitas_Al_(color, dirección){
+function tieneBolitas_Al_(color, dirección) {
     /*
-        PROPÓSITO: Indica si hay bolitas de color *color* en la celda lindante
-                    en dirección *dirección*.
-        PRECONDICIONES: Debe haber al menos una celda en dirección *dirección*
-        TIPO: Boolenao
+        PROPÓSITO:  Indica si la celda lindante en dirección *dirección* tiene bolitas del color *color*.
         PARÁMETROS:
-            *color: Color. El color de las bolitas a buscar.
-            *dirección: Dirección. La dirección en la cual buscar buscar las bolitas
+            * color: Color - Color de las bolitas.
+            * dirección: Dirección - Dirección que debe desplazarse el cabezal.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos una celda lindante al *dirección* de la celda actual.
+        OBSERVACIONES: Recorrido de búsqueda.
     */
     Mover(dirección)
     return (hayBolitas(color))
@@ -58,6 +59,23 @@ function hayBolitas_Hacia_(color, dirección) {
         Mover(dirección)
     }
     return (hayBolitas(color))
+}
+//5
+function hayCeldaVacíaHacia_(dirección) {
+    /*
+        PROPÓSITO:  Indica si hay en alguna celda vacia en dirección *dirección*, sin contar la celda actual.
+        PARÁMETROS:
+            * dirección: Dirección - Dirección que debe desplazarse el cabezal.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos una celda en dirección *dirección* lindante de la celda actual.
+        OBSERVACIONES: Recorrido de búsqueda.
+    */
+    Mover(dirección)
+    while (puedeMover(dirección) && tieneUnaDeCada()) {
+        Mover(dirección)
+    }
+    return (not hayBolitas(color))
 }
 //6 no cor
 function hayAlgunaBolita_(color) {
@@ -408,6 +426,39 @@ function nroBolitasTotalDeColor_(color) {
      return(choose 1 when (condicion)
              0 otherwise)
 }
+//29 ok
+function direcciónHaciaLaCualHayBolitasDe_(color){
+    /*
+        PROPÓSITO: describe la dirección hacia la cual hay bolitas de color *color*
+        PRECONDICIONES: Debe haber solo una celda con bolitas de color *color* en 
+                        en una de las direcciones a mirar
+        PARÁMETROS: color. Indica el 
+        TIPO: direccion
+    */
+    direcciónAMover := minDir()
+    while (not hayBolitas_Al_(color, direcciónAMover)) {
+        direcciónAMover := siguiente(direcciónAMover)
+    }
+    return(direcciónAMover)
+}
+
+function cantidadDeVecinasConBolitas(){
+    /*
+        PROPÓSITO: describe la cantidad de celdas vecinas que contienen bolitas ( de cualquier color )
+        PRECONDICIONES:Ninguna
+        TIPO: numero
+        OBSERVACIONES: recorrido sobre enumerativos, contando las
+                        celdas vecinas con bolitas
+    */
+    cantidadConBolitas := 0
+    direcciónAMover := minDir()
+    while (direcciónAMover /= maxDir()) {
+        cantidadConBolitas := cantidadConBolitas + 
+        unoSi_CeroSino(hayBolitasAl_(direcciónAMover) && hayBolitas_Al_(direcciónAMover, siguiente(direcciónAMover)) )
+    }
+    return()
+}
+
 
 function hayÁrbol() {
     return (haybolitas(Verde))
@@ -436,3 +487,70 @@ function cantidadTotalDeÁrbolesEnElTerreno() {
     return (cantidadDeÁrboles)
     
 }
+//39 no corregido
+
+function cantidadDePistasLibres(){
+    /*
+        PROPÓSITO:  Describe la cantidad pistas libres
+        TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+        ONSERVACION: recorrido de acumulacion
+    */
+    //PISTA LIBRE: NO HAY AVIONES NI AZUL NI VERDE. PISTA ES COLUMNA
+    IrAlInicioDeUnRecorridoAl_YAl_(Este, Norte)
+    cantidadDePistasLibres:= 0
+     while (haySiguienteCeldaEnUnRecorridoAl_YAl_(Este, Norte)) {
+       
+        cantidadDePistasLibres := cantidadDePistasLibres + unoSi_CeroSino(esPistaLibre())
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (cantidadDePistasLibres)
+}
+
+function esPistaLibre(){
+    IrAlBorde(Sur)
+    while(hayCeldaVacíaHacia_(norte) && 
+        (not aviónDespegando() || not aviónAterrizando()){
+            Mover(Norte)
+    }
+    return(true)
+}
+distanciaAlBorde_
+function coordenadaX() {
+    /*
+        PROPÓSITO:  Describe la coordenada X donde se encuentra el cabezal
+        TIPO: número
+        PRECONDICIONES:
+            * Ninguna
+    */
+    return(distanciaAlBorde_(Oeste))
+    
+}
+function cantidadDeAvionesDespegando(){
+    //verde
+    IrAlInicioDeUnRecorridoAl_YAl_(Este, Norte)
+    cantidadDeAvionesDespegando:= 0
+     while (haySiguienteCeldaEnUnRecorridoAl_YAl_(Este, Norte)) {
+       
+        cantidadDeAvionesDespegando := cantidadDeAvionesDespegando + unoSi_CeroSino(hayAviónDespegando())
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (cantidadDeAvionesDespegando)
+}
+
+function hayAviónDespegando(){
+    return(hayBolitas(Verde))
+}
+
+
+function aviónDespegando(){
+    return(Verde)
+}
+function aviónAterrizando(){
+    return(Rojo)
+}
+
+//min 40 del video
