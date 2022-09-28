@@ -441,7 +441,7 @@ function direcciónHaciaLaCualHayBolitasDe_(color){
     }
     return(direcciónAMover)
 }
-
+//30
 function cantidadDeVecinasConBolitas(){
     /*
         PROPÓSITO: describe la cantidad de celdas vecinas que contienen bolitas ( de cualquier color )
@@ -457,6 +457,25 @@ function cantidadDeVecinasConBolitas(){
         unoSi_CeroSino(hayBolitasAl_(direcciónAMover) && hayBolitas_Al_(direcciónAMover, siguiente(direcciónAMover)) )
     }
     return()
+}
+//33
+function coordenadaXConMásBolitas(){
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    maximaCantidadDeBolitas := 0
+    coordenadaX := 0
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+       if(maximaCantidadDeBolitas < cantidadDeBolitasDeLaCeldaActual()){
+           maximaCantidadDeBolitas := cantidadDeBolitasDeLaCeldaActual()
+           coordenadaX := coordenadaX()
+       }
+       
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (coordenadaX)
+}
+function cantidadDeBolitasDeLaCeldaActual(){
+    return(nroBolitas(Azul) + nroBolitas(Verde)+nroBolitas(Rojo)+nroBolitas(Negro))
 }
 
 

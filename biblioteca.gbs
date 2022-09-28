@@ -427,3 +427,4 @@ function nroBolitasTotalDeColor_(color) {
      return(choose 1 when (condicion)
              0 otherwise)
 }
+
