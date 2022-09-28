@@ -1,0 +1,52 @@
+//1
+procedure ComerTodosLosCocosDelNivel() {
+    /*
+    PROPÓSITO: Hacer que Gobs-Man coma todos los cocos del nivel
+    PRECONDICONES:
+        * Debe haber un coco en cada celda del tablero.
+        * El cabezal debe estar sobre Gobs-man.
+    PARÁMETROS:
+    RECORRIDO: Procesamiento
+    */
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)) {
+        ComerCoco()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    ComerCoco()
+}
+
+procedure LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria) {
+    /*
+    PROPÓSITO: Llevar a Gobs-Man a la primera celda en un recorrido
+        al dirPrincipal y dirSecundaria
+    PARÁMETROS:
+        dirPrincipal - dirección: La dirección principal a moverse.
+        dirSecudnaria - dirección: La dirección secundaria a moverse.
+    PRECONDICIONES:
+        Las direcciones dirPrincipal y dirSecundiaria no pueden ser
+            opuestas ni iguales.
+    */
+    LlevarGobsManAlBorde_(opuesto(dirPrincipal))
+    LlevarGobsManAlBorde_(opuesto(dirSecundaria))
+}
+
+procedure LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria) {
+    /*
+    PROPÓSITO: Llevar a Gobs-Man a la siguiente celda en un recorrido
+        al dirPrincipal y dirSecundaria
+    PARÁMETROS:
+        dirPrincipal - dirección: La dirección principal a moverse.
+        dirSecudnaria - dirección: La dirección secundaria a moverse.
+    PRECONDICIONES:
+        Las direcciones dirPrincipal y dirSecundiaria no pueden ser
+            opuestas ni iguales.
+    */
+    if (puedeMover(dirPrincipal)) {
+        MoverGobsManAl_(dirPrincipal)
+    }
+    else {
+        LlevarGobsManAlBorde_(opuesto(dirPrincipal))
+        MoverGobsManAl_(dirSecundaria)
+    }
+}

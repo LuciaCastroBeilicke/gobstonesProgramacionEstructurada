@@ -1,0 +1,331 @@
+program {
+    
+}
+// PUNTO 1
+
+procedure ComerTodosLosCocosDelNivel() {
+    /*
+    PROPÓSITO: Hacer que Gobs-Man coma todos los cocos del nivel.
+    PRECONDICONES:
+        * Debe haber un coco en cada celda del tablero.
+        * El cabezal debe estar sobre Gobs-man.
+    PARÁMETROS:
+    RECORRIDO: Procesamiento
+    */
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)) {
+        ComerCoco()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    ComerCoco()
+}
+
+procedure LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria) {
+    /*
+    PROPÓSITO: Llevar a Gobs-Man a la primera celda en un recorrido
+        al *dirPrincipal* y *dirSecundaria*
+    PARÁMETROS:
+        dirPrincipal - dirección: La dirección principal a moverse.
+        dirSecudnaria - dirección: La dirección secundaria a moverse.
+    PRECONDICIONES:
+        Las direcciones *dirPrincipal* y *dirSecundiaria* no pueden ser
+            opuestas ni iguales.
+    */
+    LlevarGobsManAlBorde_(opuesto(dirPrincipal))
+    LlevarGobsManAlBorde_(opuesto(dirSecundaria))
+}
+
+procedure LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria) {
+    /*
+    PROPÓSITO: Llevar a Gobs-Man a la siguiente celda en un recorrido
+        al *dirPrincipal* y *dirSecundaria*
+    PARÁMETROS:
+        dirPrincipal - dirección: La dirección principal a moverse.
+        dirSecudnaria - dirección: La dirección secundaria a moverse.
+    PRECONDICIONES:
+        Las direcciones *dirPrincipal* y *dirSecundiaria* no pueden ser
+            opuestas ni iguales.
+    */
+    if (puedeMover(dirPrincipal)) {
+        MoverGobsManAl_(dirPrincipal)
+    }
+    else {
+        LlevarGobsManAlBorde_(opuesto(dirPrincipal))
+        MoverGobsManAl_(dirSecundaria)
+    }
+}
+
+// PUNTO 2
+
+procedure ComerTodasLasCerezasDelNivel() {
+    /*
+    PROPÓSITO: Hacer que Gobs-Man coma todos las cerezas del nivel.
+    PRECONDICONES:
+        * El cabezal debe estar sobre Gobs-man.
+    OBSERVACIONES: Recorrido de Procesamiento
+    */
+
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este)
+
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)) {
+        ComerCerezaSiHay()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    ComerCerezaSiHay()
+    
+}
+
+procedure ComerCerezaSiHay() {
+    /*
+    PROPÓSITO: Gobsman come una cereza en la celda actual si hay.
+    PRECONDICIONES: El cabezal debe estar sobre gobsman.
+    */
+    if (hayCereza()) {
+        ComerCereza()
+    }
+}
+
+// PUNTO 3
+
+procedure ComerTodoLoQueSeEncuentreEnElNivel() {
+    /*
+    PROPÓSITO: Come todos los cocos y todas las cerezas del nivel.
+    PRECONDICIONES:
+        * Debe haber un coco en cada celda del nivel.
+    */
+    ComerTodosLosCocosDelNivel()
+    ComerTodasLasCerezasDelNivel()
+    // Yo lo haría con más líneas pero menos recorrido.
+}
+
+// PUNTO 4
+
+procedure ComerTodoLoQueSeEncuentreEnElNivel() {
+    /*
+    PROPÓSITO: Hacer que Gobs-Man coma todas las cerezas y todos los
+        cocos del nivel.
+    PRECONDICIONES:
+        * El cabezal debe estar sobre Gobs-man.
+        * En cada casillero debe haber un coco o una cereza.
+    OBSERVACIÓN: Recorrido de Procesamiento
+    */
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)) {
+        ComerCerezaSiHayOComerCocoSino()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    ComerCerezaSiHayOComerCocoSino()
+}
+
+procedure ComerCerezaSiHayOComerCocoSino() {
+    /*
+    PROPÓSITO: Come una cereza de la celda actual si hay, sino, come
+        un coco en la celda actual.
+    PRECONDICIONES: Debe haber al menos una cereza o un coco en la celda
+        acutal.
+    */
+    if hayCereza() {
+        ComerCereza()
+    }
+    else {
+        ComerCoco()
+    }
+}
+
+// PUNTO 5
+
+procedure RecorrerNivelMuriendoEnElFantasma() {
+    /*
+    PROPÓSITO: Buscar el fantasma y morir al encontrarlo, dejando el
+        cabezal sobre Ghost-Man
+    PRECONDICIONES:
+        * Al iniciar el recorrido Gobs-Man debe estar vivo. ~debatible.
+        * Debe haber al menos un fantasma en el nivel.
+        * El cabezal debe estar siempre sobre GobsMan
+    OBSERVACIONES: Recorrido de búsqueda
+    */
+    
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este) //~TELETRANSPORTACIÓN
+    
+    while(not(hayFantasma())) {
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    MorirGobsMan()
+}
+
+// PUNTO 6
+
+procedure RecorrerNivelMuriendoSiHayFantasma() {
+    /*
+    PROPÓSITO: Recorre el nivel y muere si GobsMan encuentra el fantasma.
+    PRECONDICIONES:
+        * Al iniciar el recorrido Gobs-Man debe estar vivo.
+        * El cabezal debe estar sobre gobsman.
+    OBSERVACIONES: Recorrido de búsqueda
+    */
+    
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    //PREGUNTAR A EMI QUE PASA SI TE CRUZÁS EL FANTASMA ACÁ
+    
+    while(not(hayFantasma()) && haySiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este) ) {
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Norte , Este)
+    }
+    
+    MorirSiHayFantasma()
+}
+
+procedure MorirSiHayFantasma() {
+    /*
+    PROPÓSITO: Muere GobsMan si hay fantasma en la celda actual.
+    PRECONDICIONES: El cabezal debe estar sobre GobsMan.
+    */
+    if (hayFantasma()) {
+        MorirGobsMan()
+    }
+}
+
+// PUNTO 7
+
+procedure JugarNivel() {
+    /*
+    PROPÓSITO: Jugar el nivel, comiendo todas las cerezas y todos
+        los cocos. Si se cruza con un fantasma en el recorrido muere
+        y finaliza el juego.
+    PRECONDICIONES: En todas las celdas debe haber un coco, una cereza,
+        o un fantasma.
+        * EL cabezal debe estar siempre sobre GobsMan.
+    */
+
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(Sur , Este)
+
+    while(not(hayFantasma()) && haySiguienteCeldaEnUnRecorridoAl_Y_(Sur , Este)){
+        ComerCerezaSiHayOComerCocoSino()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(Sur , Este)      
+    }
+    ComerCerezaOCocoSiNoHayFantasma()       
+}
+
+procedure ComerCerezaOCocoSiNoHayFantasma() {
+    /*
+    PROPÓSITO: Come cerezas o cocos del casillero actual si no hay fantsma. Si hay fantasma, muere.
+    PRECONDICIONES:
+        * El cabezal debe estar sobre Gobsman.
+        * Debe haber una cereza, un coco o un fantsma en el casillero actual.
+    */
+        
+    if hayFantasma() {
+        MorirGobsMan
+    }
+    else {
+        ComerCerezaSiHayOComerCocoSino()
+    }
+}
+
+// PUNTO 8
+
+procedure JugarNivelEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria) {
+    /*
+    PROPÓSITO: Jugar el nivel, comiendo todas las cerezas y todos
+        los cocos. Si se cruza con un fantasma en el recorrido muere
+        y finaliza el juego, haciendo un recorrido en dirección *dirPrincipal* y *dirSecundaria*
+    PRECONDICIONES:
+        * En todas las celdas debe haber un coco, una cereza, o un fantasma.
+        * EL cabezal debe estar siempre sobre GobsMan.
+    PARÁMETROS:
+        * dirPrincipal - Dirección: Dirección principal del recorrido.
+        * dirSecundaria - Dirección: Dirección secundaria del recorrido.
+    */
+    LlevarAGobsManAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria)
+
+    while(not(hayFantasma()) && haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria)){
+        ComerCerezaSiHayOComerCocoSino()
+        LlevarAGobsmanASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal , dirSecundaria)      
+    }
+    ComerCerezaOCocoSiNoHayFantasma()         
+}
+
+// PUNTO 9
+
+procedure MoverGobsManAl_(dirección) {
+    /*
+    PROPÓSITO: Mueve a Gobs-Man a la celda vecina en la dirección *dirección*. El cabezal queda sobre Gobs-Man.
+    PRECONDICIÓNES:
+        * Existe una celda vecina en dirección *dirección*.
+        * El cabezal se encuentra sobre Gobs-Man.
+        * Gobsman debe estar vivo.
+    PARÁMETROS:
+        * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.
+    */
+
+    SacarAGobsMan()
+    Mover(dirección)
+    PonerAGobsMan()
+
+}
+
+procedure SacarAGobsMan() {
+    /*
+    PROPÓSITO: Saca a Gobsman de la celda actual.
+    PRECONDICIONES:
+        * Gobsman debe estar en la celda actual.
+    OBSERVACIONES: GobsMan se representa mediante una bolita negra.
+    */
+    Sacar(Negro)
+}
+procedure PonerAGobsMan() {
+    /*
+    PROPÓSITO: Pone a Gobsman de la celda actual.
+    PRECONDICIONES:-
+    OBSERVACIONES: GobsMan se representa mediante una bolita negra.
+    */
+    Poner(Negro)
+}
+
+procedure LlevarGobsManAlBorde_(dirección) {
+    /*
+    PROPÓSITO: Mueve a Gobs-Man a la celda en el borde hacia la dirección
+        “dirección”. El cabezal queda sobre Gobs-Man.
+    PRECONDICIÓNES:
+        * El cabezal se encuentra sobre Gobs-Man.
+        * Gobsman debe estar vivo
+    PARÁMETROS:
+        * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.
+    */
+    SacarAGobsMan()
+    IrAlBorde(dirección)
+    PonerAGobsMan()
+}
+
+procedure ComerCoco() {
+    /*
+    PROPÓSITO: Come el coco que hay en la celda actual.
+    PRECONDICIONES:
+        * Hay un coco en la celda actual.
+        * Gobs-Man está en la celda actual.
+        * Gobs-Man debe estar vivo.
+    */
+    Sacar(Negro)
+}
+
+procedure ComerCereza() {
+    /*
+    PROPÓSITO: Come la cereza hayada en la celda actual.
+    PRECONDICIONES:
+        * Hay una cereza en la celda actual.
+        * Gobs-Man está en la celda actual.
+        * Gobs-Man debe estar vivo.
+    */
+    Sacar_DeColor_(2 , Rojo)
+}
+
+
+function hayCereza() {
+    /*    
+    PROPÓSITO: Indica cuando hay una cereza en la celda actual.
+    PRECONDICIÓN: -
+    TIPO: Booleano
+    OBSERVACIÓN: Una cereza se representa mediante dos bolitas rojas.
+    */
+
+    return(nroBolitas(Rojo) == 2)
+}
