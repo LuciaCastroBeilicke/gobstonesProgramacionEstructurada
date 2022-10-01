@@ -1,0 +1,176 @@
+//11 corregir con el video
+function puntajeAObtenerEnCeldaActual() {
+    /*
+        PROPÓSITO:  describe el puntaje a obtener en la celda actual
+        TIPO: Número
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (puntajeDeCoco + puntajeDeCereza + puntajeDeFrutilla)
+    //otra forma: la desventaja es que hay que cambiar mucho si cambia el puntaje.
+    //return(puntaje_Si_CeroSino(100,hayCoco())+ )
+}
+
+function puntajeDeCoco() {
+    /*
+        PROPÓSITO:  Describe el puntaje a obtener por el coco en la celda actual, si hubiera.
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (choose
+        100 when (hayCoco())
+        0 otherwise
+    )
+}
+function puntajeDeCereza() {
+    /*
+        PROPÓSITO:  Describe el puntaje a obtener por la cereza en la celda actual, si hubiera.
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (choose
+        100 when (hayCereza())
+        0 otherwise
+    )
+}
+function puntajeDeFrutilla() {
+    /*
+        PROPÓSITO:  Describe el puntaje a obtener por la frutilla en la celda actual, si hubiera.
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (choose
+        500 when (hayFrutilla())
+        0 otherwise
+    )
+}
+//12
+
+procedure Mostrar_PuntosEnPantalla(cantidadDePuntosAMostrar){
+    /**/
+}
+procedure ComerLoQueHayEnLaCeldaYMostrarPuntos() {
+    /*
+        PROPÓSITO:  Hacer que ms goms man coma todo lo que hay en la celda actual y mostrar puntos en pantalla.
+       PRECONDICIONES:
+            * El cabezal se encuentra sobre ms gobsman
+    */
+    puntajeAObtener := puntajeAObtenerEnCeldaActual()
+    ComerLoQueHayEnLaCelda()
+    Mostrar_PuntosEnPantalla(puntajeAObtener)
+    
+}
+
+procedure ComerLoQueHayEnLaCelda(){
+     /*
+        PROPÓSITO:  Hacer que ms goms man coma todo lo que hay en la celda actual si hubiera comida.
+       PRECONDICIONES:
+            * El cabezal se encuentra sobre ms gobsman
+    */
+    ComerCocoSiHay()
+    ComerCerezaSiHay()
+    ComerFrutillaSiHay()
+}
+
+procedure ComerCocoSiHay(){
+    if(hayCoco()){
+        ComerCoco()
+    }
+}
+
+procedure ComerFrutillaSiHay(){
+    if(hayFrutilla()){
+        ComerFrutilla()
+    }
+}
+
+procedure ComerCerezaSiHay(){
+    if(hayCereza()){
+        ComerCereza()
+    }
+}
+//13
+function cantidadDePuntosEnElNivel(){
+    /*
+    PROPÓSITO: describe la cantidad de puntos a obtener en el nivel.
+    OBSER: Recorrido de acumulacion, sumando puntos a obtener en el nivel.
+    */
+    cantidadDePuntos:= 0
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaAl_Y_(Este, Norte)) {
+        cantidadDePuntos := cantidadDePuntos + puntajeAObtenerEnCeldaActual()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    //se puede poner aca y poner cantidadDePuntos en el return
+    //cantidadDePuntos := cantidadDePuntos + puntajeAObtenerEnCeldaActual()
+//o directo en el return
+    return (cantidadDePuntos + puntajeAObtenerEnCeldaActual())
+}
+//14
+
+function hayAlgúnFantasmaEnElNivel(){
+    /*
+    PROPÓSITO: Indica si hay un fantasma en el nivel
+    PRECONDICIONES: ninguna
+    TIPO: booleano
+    OBSERVACIONES: recorrido de busqueda, buscando al fantasma en el nivel
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_()
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_() && not hayFantasma()) {
+        IrAlaSiguienteCeldaEnUnRecorridoAl_y_()
+    }
+    return (hayFantasma())
+}
+//15
+//16
+function esMejorRecorridoHacia_Y_QueHacia_Y_(dirPrincipal1, dirSecundaria1, dirPrincipal2, dirSecundaria2){
+    /*
+        PROPÓSITO: indica si el recorrido hacia *dirp1* y *dirsecu1* obtiene más puntos que un recorrido hacia 
+        *dirP2* y *dirsecu2*
+        PARÁMETROS:
+            *dirPrincipal1
+            *dirSecundaria1
+            *dirPrincipal2
+            *dirSecundaria2
+        PRECONDICIONES:
+            **dirPrincipal1*
+        TIPO: booleano
+    */
+    return (cantidadDePuntosEnNivelHacia_Y_(dirPrincipal1, dirSecundaria1) > cantidadDePuntosEnNivelHacia_Y_(dirPrincipal2,dirSecundaria2 ))
+}
+
+//17
+function masDeLaMitadDelNivelSiVaHacia_Y_(dirPrincipal, dirSecundaria){
+    return (cantidadDeCeldasRecorridasAl_Y_(dirPrincipal, dirSecundaria) > (tamañoDelTablero() div 2))
+}
+
+function cantidadDeCeldasRecorridasAl_Y_(dirPrincipal1, dirSecundaria1){
+    /*
+    Proposito: describe la cantidad de celdas recorridas por gobsman en un recorrido hacia dirprincial y dirsecundaria 
+    PRECONDICIONES:
+    TIPO: numero
+    */
+    cantidadDeCeldasRecorridas := 0
+    direccionPrincipalARecorrer := opuesto(dirPrincipal)
+    direccionSecundariaARecorrer := opuesto(dirSecundaria)
+
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(direccionPrincipalARecorrer, direccionSecundariaARecorrer)){
+        cantidadDeCeldasRecorridas := cantidadDeCeldasRecorridas + 1
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(direccionPrincipalARecorrer, direccionSecundariaARecorrer)
+    }
+    return (cantidadDeCeldasRecorridas + 1)
+}
+
