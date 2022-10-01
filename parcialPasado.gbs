@@ -1,0 +1,44 @@
+EJERCICIO 3: 
+
+Suponiendo que la burbuja se encuentra rodeada de espinas que apuntan hacia ella en 3 de las 4 direcciones, se pide realice el procedimiento MoverBurbujaAUbicaciónSegura que mueve la burbuja una celda hacia la dirección que no contenga espinas. 
+
+
+
+
+procedure MoverBurbujaAUbicaciónSegura(){
+/
+    PROPÓSITO: 
+        *Mueve la burbuja en una a una ubicación segura.
+    PRECONDICIONES:
+        *La burbuja debe estar en la celda actual.
+
+/
+    if (not hayEspinasAl(Norte)){
+        MoverBurbujaAl(Norte)
+    }
+    elseif (not hayEspinasAl(Oeste)){
+        MoverBurbujaAl(Oeste)
+    }
+    elseif (not hayEspinasAl(Este)){
+        MoverBurbujaAl(Este)
+    }
+    else {
+        MoverBurbujaAl(Sur)
+    }
+}
+
+procedure MoverBurbujaAl(dirección){
+/*
+    PROPÓSITO: 
+        *Mueve la burbuja una posición hacia la dirección "dirección".
+    PRECONDICIONES: 
+        *El cabezal debe estar sobre la burbuja.
+        *Debe haber al menos una posición lindante al "dirección" vacía.
+    PARÁMETROS:
+        *dirección: dirección- la dirección a la que debe moverse la burbuja.
+*/
+    SacarBurbuja()
+    Mover(dirección)
+    PonerBurbuja()
+
+}

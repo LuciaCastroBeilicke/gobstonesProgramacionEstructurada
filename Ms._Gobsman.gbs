@@ -1,0 +1,412 @@
+function puntajeAObtenerEnCeldaActual() {
+    /*
+        PROPÓSITO: Describe el puntaje a obtener en la celda actual. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */
+    return(puntajeDeCocoAcá() + puntajeDeCerezaAcá() + puntajeDeFrutillaAcá())
+    /*
+    return( puntaje_Si_CeroSino(puntosCoco(),hayCoco()) + 
+            puntaje_Si_CeroSino(puntosCereza(),hayCereza()) + 
+            puntaje_Si_CeroSino(puntosFrutilla(),hayFrutilla()))
+    */
+}
+
+function puntosCereza() {
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por la cereza en la celda actual. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */ 
+    return(2000)
+}
+
+function puntosFrutilla() {
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por la frutilla en la celda actual. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */ 
+    return(500)
+}
+
+function puntosCoco() {
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por el coco en la celda actual. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */ 
+    return(100)
+}
+
+function puntaje_Si_CeroSino(puntaje,condicion) {
+    return(choose   puntaje when (condicion)
+                    0       otherwise)
+}
+
+//////////////////////////////////////////////////////////////////////////////7
+
+
+function puntajeDeCocoAcá() { 
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por el coco en la celda actual, si hubiera. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */    
+    return(choose   puntosCoco() when (hayCoco())
+                    0   otherwise)
+}
+
+function puntajeDeCerezaAcá() { 
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por la cereza en la celda actual, si hubiera. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */
+    return(choose   puntosCereza() when (hayCereza())
+                    0   otherwise)
+}
+
+function puntajeDeFrutillaAcá() {
+    /*
+        PROPÓSITO: Describe el puntaje a obtener por la frutilla en la celda actual, si hubiera. 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+    */
+    return(choose   puntosFrutilla() when (hayFrutilla())
+                    0   otherwise)   
+}
+
+///////////////////////////////////////////////////////////////
+
+
+procedure Mostrar_PuntosEnPantalla(cantidadDePuntosAMostrar) {
+/*
+    PROPÓSITO: Muestra en la pantalla la cantidad de puntos dados en como argumento.
+    OBSERVACIÓN: Los puntos se muestran como un número en un recuadro verde en la esquina de la celda.
+    PRECONDICIÓNES:
+        * No debe haber elementos para comer en la celda actual.
+        * El cabezal se encuentra sobre Ms. Gobs-Man.
+    PARÁMETROS:
+    * cantidadDePuntosAMostrar: Número - Los puntos a mostrar en la pantalla.
+*/
+    //////////////////////
+    // es una primitiva //
+    //////////////////////
+}
+
+
+procedure ComerLoQueHayEnLaCeldaYMostrarPuntos() {
+/*
+    PROPÓSITO: Hacer que Ms GobsMan coma todo lo que hay en la celda actual si hubiera comida y mostrar puntos en la pantalla.  
+    PRECONDICIÓNES: El cabezal se encuentra sobre Ms. Gobs-Man.
+*/    
+    puntajeAObtener := puntajeAObtenerEnCeldaActual()
+    ComerLoQueHayEnLaCelda()
+    Mostrar_PuntosEnPantalla(puntajeAObtener)
+}
+
+procedure ComerLoQueHayEnLaCelda() {
+/*
+    PROPÓSITO: Hacer que Ms GobsMan coma todo lo que hay en la celda actual si hubiera comida.  
+    PRECONDICIÓNES: El cabezal se encuentra sobre Ms. Gobs-Man.
+*/     
+    ComerCocoSiHay()
+    ComerCerezaSiHay()
+    ComerFrutillaSiHay()
+}
+
+procedure ComerCocoSiHay() {
+/*
+    PROPÓSITO: Hacer que Ms GobsMan coma el coco en la celda actual si hubiera.  
+    PRECONDICIÓNES: El cabezal se encuentra sobre Ms. Gobs-Man.
+*/  
+    if(hayCoco()){
+        ComerCoco()
+    }
+}
+
+procedure ComerCerezaSiHay() {
+/*
+    PROPÓSITO: Hacer que Ms GobsMan coma la cereza en la celda actual si hubiera.  
+    PRECONDICIÓNES: El cabezal se encuentra sobre Ms. Gobs-Man.
+*/  
+    if(hayCereza()){
+        ComerCereza()
+    }
+}
+
+procedure ComerFrutillaSiHay() {
+/*
+    PROPÓSITO: Hacer que Ms GobsMan coma la frutilla en la celda actual si hubiera.  
+    PRECONDICIÓNES: El cabezal se encuentra sobre Ms. Gobs-Man.
+*/  
+    if(hayFrutilla()){
+        ComerFrutilla()
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+
+function cantidadDePuntosEnElNivel() {
+    /*
+        PROPÓSITO: Describe la cantidad de puntos a obtener en el nivel 
+        PRECONDICIONES: Ninguna.
+        TIPO: Número.
+        OBSERVACIONES: Recorrido de acumulación, sumando los puntos a obtener en el nivel. 
+    */    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    cantidadDePuntos := puntajeAObtenerEnCeldaActual()
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        cantidadDePuntos := cantidadDePuntos + puntajeAObtenerEnCeldaActual()
+    }
+    return(cantidadDePuntos)
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+function hayAlgúnFantasmaEnElNivel() {
+    /*
+        PROPÓSITO: Indica si hay un fantasma en el nivel.
+        PRECONDICIONES: Ninguna.
+        TIPO: Booleano
+        OBSERVACIONES: Recorrido de búsqueda, buscando al fantasma en el nivel.
+    */    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte) && not hayFantasma()) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    return(hayFantasma())    
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+function cantidadDePuntosEnNivelHacia_Y_(direcciónPrincipal,direcciónSecundaria) {
+    /*
+        PROPÓSITO: Describe la cantidad de puntos a obtener en un recorrido en dirección 
+            *direcciónPrincipal*  y *direcciónSecundaria* hasta encontrar al fantasma o al final del recorrido.
+        PRECONDICIONES:
+            *direcciónPrincipal*  y *direcciónSecundaria* no pueden ser opuestas ni iguales.
+        PARÁMETROS: 
+            direcciónPrincipal: Dirección. La dirección principal del recorrido
+            direcciónSecundaria: Dirección. La dirección secundaria del recorrido
+        TIPO: Número
+        OBSERVACIONES: Recorrido de acumulación (y búsqueda), sumando los puntos a obtener.
+    */
+    cantidadDePuntos:=0
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(direcciónPrincipal,direcciónSecundaria)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal,direcciónSecundaria) && not hayFantasma()) {
+        cantidadDePuntos := cantidadDePuntos + puntajeAObtenerEnCeldaActual()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal,direcciónSecundaria)
+    }
+    return(cantidadDePuntos + puntajeAObtenerEnCeldaActual())
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+function esMejorRecorridoHacia_Y_QueHacia_Y_(dirPrincipal1, dirSecundaria1, dirPrincipal2,dirSecundaria2) {
+    /*
+        PROPOSITO: Indica si el recorrido hacia *dirPrincipal1* y *dirSecundaria1* obtiene más puntos que un recorrido  
+            hacia *dirPrincipal2* y *dirSecundaria2*
+        PRECONDICIONES:
+            *dirPrincipal1*  y *dirSecundaria1* no pueden ser opuestas ni iguales.
+            *dirPrincipal2*  y *dirSecundaria2* no pueden ser opuestas ni iguales.
+        PARAMETROS: 
+            dirPrincipal1: Dirección. La dirección principal del primer recorrido
+            dirSecundaria1: Dirección. La dirección secundaria del primer recorrido
+            dirPrincipal2: Dirección. La dirección principal del segundo recorrido
+            dirSecundaria2: Dirección. La dirección secundaria del segundo recorrido
+        TIPO: Booleano
+    */
+    return( cantidadDePuntosEnNivelHacia_Y_(dirPrincipal1, dirSecundaria1) > 
+            cantidadDePuntosEnNivelHacia_Y_(dirPrincipal2, dirSecundaria2))
+}
+
+/////////////////////////////////////////////////////////////////////
+
+function masDeLaMitadDelNivelSiVaHacia_Y_(direcciónPrincipal,direcciónSecundaria) {
+    /*
+        PROPOSITO: Indica si GobsMan recorrió más de la mitad del camino en un recorrido hacia 
+            *direcciónPrincipal* y *direcciónSecundaria*.
+        PRECONDICIONES:
+            * *direcciónPrincipal*  y *direcciónSecundaria* no pueden ser opuestas ni iguales.
+            * El cabezal debe estar sobre Ms GobsMan. 
+        PARAMETROS: 
+            direcciónPrincipal: Dirección. La dirección principal del recorrido
+            direcciónSecundaria: Dirección. La dirección secundaria del recorrido
+        TIPO: Booleano
+    */
+    return(cantidadCeldasRecorridasAl_Y_(direcciónPrincipal,direcciónSecundaria) >
+           (tamañoDelTablero() div 2)
+          )
+}
+
+function cantidadCeldasRecorridasAl_Y_(direcciónPrincipal,direcciónSecundaria) {
+    /*
+        PROPOSITO: Describe la cantidad de celdas recorridas por GobsMan en un recorrido hacia 
+            *direcciónPrincipal* y *direcciónSecundaria*.
+        PRECONDICIONES:
+            * *direcciónPrincipal*  y *direcciónSecundaria* no pueden ser opuestas ni iguales.
+            * El cabezal debe estar sobre Ms GobsMan. 
+        PARAMETROS: 
+            direcciónPrincipal: Dirección. La dirección principal del recorrido
+            direcciónSecundaria: Dirección. La dirección secundaria del recorrido
+        TIPO: Número        
+        OBSERVACIONES: Recorrido de acumulacion, contando la cantidad de celdas recorridas por Ms Gobsman.
+    */
+    cantidadRecorrida:=0
+    direccionPrincipalARecorrer := opuesto(direcciónPrincipal)
+    direccionSecundariaARecorrer := opuesto(direcciónSecundaria)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(direccionPrincipalARecorrer,direccionSecundariaARecorrer)) {
+        cantidadRecorrida := cantidadRecorrida + 1
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(direccionPrincipalARecorrer,direccionSecundariaARecorrer)
+    }    
+    return(cantidadRecorrida + 1)
+}
+
+
+procedure MoverFantasmaHaciaMsGobsMan() {
+    /*
+        PROPÓSITO: Mover el fantasma hacia Ms. Gobsman viva
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.
+            * Ms Gobsman debe estar viva en el tablero
+    */
+    while(not hayMsGobsManViva()){
+        MoverFantasmaUnPasoHaciaMsGobsMan()
+    }
+}
+
+
+procedure MoverFantasmaUnPasoHaciaMsGobsMan() {
+    /*
+        PROPÓSITO: Hacer que el fantasma avance un paso hacia Ms. Gobsman viva.
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.
+            * Ms Gobsman debe estar viva en el tablero
+    */
+    if(elFantasmaDebeMoverseHorizontalmente()){
+        MoverFantasmaUnPasoHaciaMsGobsManEnHorizontal()
+    } elseif(elFantasmaDebeMoverseVerticalmente()) {
+        MoverFantasmaUnPasoHaciaMsGobsManEnVertical()
+    } else {
+        MoverFantasmaUnPasoHaciaMsGobsManEnDiagonal() 
+    }
+}
+
+
+function elFantasmaDebeMoverseHorizontalmente() {
+    /*
+        PROPÓSITO: Describe si el fantasma y Ms Gobsman están en la misma fila.
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.
+            * Ms Gobsman debe estar viva en el tablero
+        TIPO: Booleano
+    */
+    return(filaDondeEstáElFantasma() == filaDondeEstáMsGobsMan())
+}
+
+function elFantasmaDebeMoverseVerticalmente() {
+    /*
+        PROPÓSITO: Describe si el fantasma y Ms Gobsman están en la misma columna.
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.
+            * Ms Gobsman debe estar viva en el tablero
+        TIPO: Booleano
+    */
+    return(columnaDondeEstáElFantasma() == columnaDondeEstáMsGobsMan())
+}
+
+function filaDondeEstáElFantasma() {
+    /*
+        PROPÓSITO: Describe la fila donde está el fantasma.
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.
+        TIPO: Número
+    */
+    return(coordenadaY()) // este es de biblioteca
+}
+
+function filaDondeEstáMsGobsman() {
+    /*
+        PROPÓSITO: Describe la fila donde está Ms Gobsman.
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero
+        TIPO: Número
+    */
+    PararCabezalEnMsGobsMan()
+    return(coordenadaY())
+}
+
+function columnaDondeEstáElFantasma() {
+    /*
+        PROPÓSITO: Describe la columna donde está el fantasma.
+        PRECONDICIONES: 
+            * Debe haber un fantasma en la celda actual.}
+        TIPO: Número
+    */
+    return(coordenadaX())
+}
+
+function columnaDondeEstáMsGobsman() {
+    /*
+        PROPÓSITO: Describe la columna donde está Ms Gobsman.
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero
+        TIPO: Número
+    */
+    PararCabezalEnMsGobsMan()
+    return(coordenadaX())
+}
+
+
+procedure MoverFantasmaUnPasoHaciaMsGobsManEnHorizontal() {
+    /*
+        PROPÓSITO: Mover fantasma un paso en la dirección horizontal hacia donde está Ms.Gobsman
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero y debe estar en la misma fila.
+            * Debe haber un fantasma en la celda actual
+    */
+    MoverFantasmaAl_(direcciónHorizontalAMoverElFantasma())
+}
+
+function  direcciónHorizontalAMoverElFantasma() {
+    /*
+        PROPÓSITO: Describe la dirección horizontal hacia donde está Ms.Gobsman.
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero.
+            * Debe haber un fantasma en la celda actual.
+        TIPO: Dirección
+    */
+    return(choose Oeste when (columnaDondeEstáMsGobsMan()< columnaDondeEstáElFantasma())
+                  Este  otherwise)
+}
+
+function  direcciónVerticalAMoverElFantasma() {
+    /*
+        PROPÓSITO: Describe la dirección vertical hacia donde está Ms.Gobsman.
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero.
+            * Debe haber un fantasma en la celda actual.
+        TIPO: Dirección
+    */
+    return(choose Sur when (filaDondeEstáMsGobsMan()< filaDondeEstáElFantasma())
+                  Norte  otherwise)
+}
+
+procedure MoverFantasmaUnPasoHaciaMsGobsManEnDiagonal() {
+    /*
+        PROPÓSITO: Mover fantasma un paso en la dirección diagonal hacia donde está Ms.Gobsman
+        PRECONDICIONES: 
+            * Ms Gobsman debe estar viva en el tablero y no debe estar en la misma fila ni en la misma columna.
+            * Debe haber un fantasma en la celda actual
+    */    
+    /////////////////////////////////////
+    ///       hacer de tarea          ///
+    /////////////////////////////////////
+}
+
+
