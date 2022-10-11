@@ -1,0 +1,59 @@
+//1
+
+type DíaDeLaSemana is variant {
+    case Lunes {}
+    case Martes {}
+    case Miercoles {}
+    case Jueves {}
+    case Viernes {}
+    case Sabado {}
+    case Domingo {}
+}
+
+function díaSiguiente_(día) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (choose
+        Martes      when (día == Lunes)
+        Miercoles   when (día == Martes)
+        Jueves      when (día == Miercoles)
+        Viernes     when (día == Jueves)
+        Sabado      when (día == Viernes)
+        Domingo     when (día == Sabado)
+        Lunes otherwise
+    )
+}
+
+function díaPrevio_(día) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return ()
+}
+
+function esDíaDeFinDeSemana_(día) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (día == Sabado || día == Domingo)
+}
