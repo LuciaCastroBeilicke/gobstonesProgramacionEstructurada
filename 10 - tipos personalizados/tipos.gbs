@@ -57,3 +57,42 @@ function esDíaDeFinDeSemana_(día) {
     
     return (día == Sabado || día == Domingo)
 }
+
+//3
+type Palo is variant {
+    case Oro {}
+    case Basto {}
+    case Espada {}
+    case Copa {}
+}
+
+type Carta is record {
+    field número 
+    field palo 
+}
+
+function anchosDeEspada(){
+        /*
+            PROPÓSITO:  Describe la carta 1 de espadas .
+            TIPO: Carta
+            PRECONDICIONES:
+                * Ninguna.
+        */
+    return(
+        Carta(número <- 1, palo <- Espada)
+        )
+}
+
+function laCarta_de_(número, palo) {
+    /*
+        PROPÓSITO:  Describe la carta con número *número* y palo *palo*
+        PARÁMETROS:
+            * número: Número - descripción.
+            * palo: Palo - descripción.
+        TIPO: Carta
+        PRECONDICIONES:
+            * *número* debe estar entre 1 y 7 o 10 y 12
+    */
+    
+    return ( Carta(número <- número, palo <- palo))
+}
