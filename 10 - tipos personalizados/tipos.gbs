@@ -67,7 +67,7 @@ type Palo is variant {
 }
 
 type Carta is record {
-    field número 
+    field número //Número
     field palo 
 }
 
@@ -95,4 +95,37 @@ function laCarta_de_(número, palo) {
     */
     
     return ( Carta(número <- número, palo <- palo))
+}
+
+/*
+type record 
+propósito: modelar x cosa
+Invariante de representacion: es como la precondicion
+    *el modelo debe ser un numero entre msyor a .. menos a...
+type variant
+solo tiene proposito
+*/
+
+function esFordNegro( autoAEvaluar) {
+    /*
+        PROPÓSITO:  indica si el *autoAEvaluar* es ford negro
+        PARÁMETROS:
+            * autoAEvaluar: Auto - Describe el auto a evaluar.
+        TIPO: booleano
+        PRECONDICIONES:
+            * ninguna
+    */
+    //funciones observadoras
+    return (
+        marca(autoAEvaluar) == Ford &&
+        colorDeAuto(autoAEvaluar) == Negro
+    )
+}
+
+program {
+  return (esFordNegro(Auto(marca <- Audi,
+                       colorDeAuto <- Azul,
+                            modelo <- 2020 )
+                    )
+        ) //returns false
 }
