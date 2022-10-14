@@ -70,7 +70,7 @@ type Carta is record {
     field número 
     field palo 
 }
-
+//a
 function anchosDeEspada(){
         /*
             PROPÓSITO:  Describe la carta 1 de espadas .
@@ -82,7 +82,19 @@ function anchosDeEspada(){
         Carta(número <- 1, palo <- Espada)
         )
 }
-
+//b
+function anchoDeBastos(){
+        /*
+            PROPÓSITO:  Describe la carta 1 de espadas .
+            TIPO: Carta
+            PRECONDICIONES:
+                * Ninguna.
+        */
+    return(
+        Carta(número <- 1, palo <- Basro)
+        )
+}
+//c
 function laCarta_de_(número, palo) {
     /*
         PROPÓSITO:  Describe la carta con número *número* y palo *palo*
@@ -96,3 +108,46 @@ function laCarta_de_(número, palo) {
     
     return ( Carta(número <- número, palo <- palo))
 }
+//d
+function esUnAncho_(carta){
+    return(
+        número(carta) == 1
+        )
+}
+
+program{
+    return(
+            esDeOro(Carta(palo <- Oro, número <- 1 )
+            )
+    )
+}
+//e
+function esFigura_(carta){
+    return(
+        número(carta) == 10 ||número(carta) == 11||número(carta) == 12
+        )
+}
+
+program{
+    return(
+            esFigura_(Carta(palo <- Oro, número <- 10 )
+            )
+    )
+}
+
+//f
+function esDeOro(carta){
+    return(
+        palo(carta) == Oro
+        )
+}
+
+program{
+    return(
+            esDeOro(Carta(palo <- Oro, número <- 1 )
+            )
+    )
+}
+
+//g
+
