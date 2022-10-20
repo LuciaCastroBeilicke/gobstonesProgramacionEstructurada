@@ -229,6 +229,24 @@ program{
 }
 
 //g
+function tieneUnNúmeroMásGrande_Que_(carta1, carta2){
+     return(
+        número(carta1) < número(carta2)
+        )
+}
 
 // unaPersona := personaAca()
 //otraPersona := (Persona(unaPersona | domicilio <- "otro"))
+program{
+   return(
+        tieneUnNúmeroMásGrande_Que_(Carta(palo <- Oro, número <- 10 ),
+                                    Carta(palo <- Oro, número <- 11 )
+                                    )
+    ) 
+}
+//h
+function sonDelMismoPalo_Y_(carta1, carta2){
+     return(
+        palo(carta1) == palo(carta2)
+        )
+}
