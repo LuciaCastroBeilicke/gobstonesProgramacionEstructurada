@@ -1,0 +1,39 @@
+//1
+type ElementoDireccionable is record {
+    /* PROPÓSITO: Modela los datos de un elemento que
+    posee atributos de dirección.
+    INV. REP.
+    * tipoDeElemento es Límite, Ángulo, Esquina, Espina,
+    EspinaRotable o Interruptor
+    */
+    field tipoDeElemento // TipoDeElemento
+    field direcciónALaQueApunta // Dirección
+}
+
+procedure GirarEnSentidoHorario(){
+    direccion := minDir()
+    while (direccion =/ maxDir()) {
+        ElementoDireccionable( elementoDireccionable() <- elementoDireccionable, direccion <-direcciónALaQueApunta)
+        //
+        direccion := siguiente(direccion)
+    }
+    ElementoDireccionable( elementoDireccionable() <- elementoDireccionable, direccion <-direcciónALaQueApunta)
+}
+
+//2
+procedure GirarTodasLasEspinasRotables(){
+
+}
+
+//3 
+function hayBurbujaEnElJuego(){
+    burbujas := 0
+    IrALaPrimeraCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    while (not(TipoDeElemento<-Burbuja) && haySiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)) {
+            IrASiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    }
+    burbujas:= burbujas + unoSi_CeroSino(elementoSimple() == ElementoSimple(Burbuja <- tipoDeElemento))
+    return (burbujas >= 1)
+}
+//4
+// 

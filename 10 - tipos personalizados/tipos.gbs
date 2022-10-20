@@ -12,13 +12,12 @@ type DíaDeLaSemana is variant {
 
 function díaSiguiente_(día) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:  Dado un dia de la semana, describe el dia siguiente
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * dia: DíaDeLaSemana - el dia de la semana a consultar su siguiente.
+        TIPO: DiaDeLaSemana
         PRECONDICIONES:
-            * ....
+            * Ninguna
     */
     return (choose
         Martes      when (día == Lunes)
@@ -46,18 +45,65 @@ function díaPrevio_(día) {
 
 function esDíaDeFinDeSemana_(día) {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+        PROPÓSITO:  Indica si el dia dato es el dia de fin de semana
+         PARÁMETROS:
+            * dia: DíaDeLaSemana - el dia de la semana .
+        TIPO: Booleano
         PRECONDICIONES:
-            * ....
+            * Ninguna
     */
     
     return (día == Sabado || día == Domingo)
 }
+//2 
+type PartidoPolítico is variant{
+    case DemocraciaPorLaVerdad {}
+    case UnidosPorLaRepública {}
+    case LiberalesPorLaLibertad {}
+    case IzquierdaDeLosObreros {}
+}
+//a
+function tieneMásVotantes_Que_(primerPartido, segundoPartido){
+    /*  
+        PROPÓSITO: Indica si el primerPartido tiene mas votos que el  segundoPartido
+        PARÁMETROS: 
+            *primerPartido:PartidoPolítico
+            *segundoPartido:PartidoPolítico
+        TIPO: booleano
+         PRECONDICIONES:
+            * Ninguna
+    */
+    return (cantidadDeVotosDe_(primerPartido) > cantidadDeVotosDe_(segundoPartido) )
+}
+//b
+function elQueTieneMásVotos(){
+     /*  
+        PROPÓSITO: describe al partido con mas votantes
+        TIPO: booleano
+         PRECONDICIONES:
+            * debe haber al menos un partido pocon al menos un voto
+    */
+    return (choose DemocraciaPorLaVerdad when (tieneMásVotos_Que_Y_(DemocraciaPorLaVerdad,UnidosPorLaRepública,LiberalesPorLaLibertad, IzquierdaDeLosObreros))
+    UnidosPorLaRepública when (tieneMásVotos_Que_Y_(UnidosPorLaRepública,LiberalesPorLaLibertad, IzquierdaDeLosObreros, DemocraciaPorLaVerdad))
+    LiberalesPorLaLibertad when(tieneMásVotos_Que_Y_(LiberalesPorLaLibertad, IzquierdaDeLosObreros, DemocraciaPorLaVerdad,UnidosPorLaRepública))
+    IzquierdaDeLosObreros otherwise)
+}
 
+function tieneMásVotos_Que_Y_Y_(primerPartido, segundoPartido, tercerPartido, cuartoPartido) {
+    /*  
+        PROPÓSITO: dados 4 partidos, describe si el primero tiene mas votos que los demás
+        PARÁMETROS:
+            *primerPartido
+            *segundoPartido
+            *tercerPartido
+            *cuartoPartido
+        TIPO: booleano
+         PRECONDICIONES:
+            * debe haber al menos un partido pocon al menos un voto
+    */
+    
+    return ()
+}
 //3
 type Palo is variant {
     case Oro {}
@@ -70,7 +116,7 @@ type Carta is record {
     field número //Número
     field palo 
 }
-
+//a
 function anchosDeEspada(){
         /*
             PROPÓSITO:  Describe la carta 1 de espadas .
@@ -82,7 +128,19 @@ function anchosDeEspada(){
         Carta(número <- 1, palo <- Espada)
         )
 }
-
+//b
+function anchoDeBastos(){
+        /*
+            PROPÓSITO:  Describe la carta 1 de espadas .
+            TIPO: Carta
+            PRECONDICIONES:
+                * Ninguna.
+        */
+    return(
+        Carta(número <- 1, palo <- Basro)
+        )
+}
+//c
 function laCarta_de_(número, palo) {
     /*
         PROPÓSITO:  Describe la carta con número *número* y palo *palo*
@@ -94,7 +152,7 @@ function laCarta_de_(número, palo) {
             * *número* debe estar entre 1 y 7 o 10 y 12
     */
     
-    return ( Carta(número <- número, palo <- palo))
+    return ( Carta(1 <- número, basto <- palo))
 }
 
 /*
@@ -129,3 +187,48 @@ program {
                     )
         ) //returns false
 }
+//d
+function esUnAncho_(carta){
+    return(
+        número(carta) == 1
+        )
+}
+
+program{
+    return(
+            esDeOro(Carta(palo <- Oro, número <- 1 )
+            )
+    )
+}
+//e
+function esFigura_(carta){
+    return(
+        número(carta) == 10 ||número(carta) == 11||número(carta) == 12
+        )
+}
+
+program{
+    return(
+            esFigura_(Carta(palo <- Oro, número <- 10 )
+            )
+    )
+}
+
+//f
+function esDeOro(carta){
+    return(
+        palo(carta) == Oro
+        )
+}
+
+program{
+    return(
+            esDeOro(Carta(palo <- Oro, número <- 1 )
+            )
+    )
+}
+
+//g
+
+// unaPersona := personaAca()
+//otraPersona := (Persona(unaPersona | domicilio <- "otro"))
