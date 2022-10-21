@@ -1,0 +1,293 @@
+//Modelo 1
+//1
+function fichaAleatoria() {
+    /*
+        PROPÓSITO:  Describe la ficha a poner en la ubicacion actual
+        TIPO: FormaDeFicha
+        PRECONDICIONES:
+            * La celda debe estar vacia
+    */
+    
+    return (choose
+        Círculo when ( hay2EstrellasAlrededorYEstáAlBorde())//cantidadDe_Alrededor(estrella)>2 && estáAlBorde
+        Rombo when (hay3FichasIgualesAlrededor())
+        Estrella when (hayObstáculo())
+        Triángulo otherwise
+    )
+}
+
+function cantidadDe_Alrededor(formaDeFicha){
+    /*
+        PROPÓSITO:  describe la cantidad de fichas que hay con forma de ficha que hay alrededor de la celda actual
+        PRECONDICIONES:
+            * Ninguna
+        TIPO: numero
+    */
+
+}
+function hay2EstrellasAlrededorYEstáAlBorde() {
+    /*
+        PROPÓSITO:  Indica si hay 2 estrellas en las celdas lindantes y si está al borde.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (estáSobreElBorde() && hay2EstrellasAlrededor())
+}
+function estáSobreElBorde() {
+    /*
+        PROPÓSITO:  Indica si la celda está sobre el borde del juego
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Ninguna
+    */
+    
+    return (not puedeMover(Este) || 
+            not puedeMover(Oeste) ||
+            not puedeMover(Norte) ||
+            not puedeMover(Sur))
+}
+function hay2EstrellasAlrededor() {
+    /*
+        PROPÓSITO:  Indica si hay dos estrellas en las celdas lindantes.
+        TIPO: Booleano
+        PRECONDICIONES: debe haber al menos una celda lindante para cada direccion
+            * Ninguna
+    */
+    cantidadDeEstrellas := 0
+    dirección := minDir()
+    while (dirección =/ maxDir()) {
+        Mover(dirección)
+        cantidadDeEstrellas := cantidadDeEstrellas + unoSi_CeroSino(hayEstrella())// puedeMover(direccion) && hayFichaConForma_Al_(formaDeFicha, dirección) o hayFichaConForma_Al_SiPuedeMover(formaDeFicha, dirección) s
+        dirección := siguiente(dirección)
+        Mover(opuesto(dirección))
+    }
+    Mover(dirección)
+    cantidadDeEstrellas := cantidadDeEstrellas + unoSi_CeroSino(hayEstrella())
+    Mover(opuesto(dirección))
+    return (cantidadDeEstrellas >= 2)
+}
+
+function hayFichaConForma_Al_SiPuedeMover(formaDeFicha, dirección){
+    /*
+        PROPÓSITO:  Indica si puede mover al direccion y si hay ficha con forma forma de ficha
+        PARÁMETROS:
+            * formaDeFicha: tipo - descripción.
+            * dirección: tipo - descripción.
+        TIPO: booleano
+        PRECONDICIONES:
+            * ninguna
+    */
+    
+    return (puedeoMober() && hayFichaConForma_Al_())
+}
+
+function hayFichaConForma_Al_(formaDeFicha, dirección){
+    /*
+        PROPÓSITO:  Indica si hay ficha con forma forma de ficha en direccion direccion 
+        PARÁMETROS:
+            * formaDeFicha: tipo - descripción.
+            * dirección: tipo - descripción.
+        TIPO: booleano
+        PRECONDICIONES:
+            * debe haber al menos una celda libre lindante a direccion
+    */
+    Mover(direccion)
+    return (hayFichaConForma_(FormaDeFicha))
+}
+
+function hayFichaConForma_(FormaDeFicha) {
+    /*
+        PROPÓSITO:  Indica si hay ficha con forma forma de ficha en celda actual
+        PARÁMETROS:
+            * FormaDeFicha: tipo - descripción.
+            
+        TIPO: bool
+        PRECONDICIONES:
+            * ninguna
+    */
+    
+    return (elementoAcá() == ficha && fichaAcá() == formaDeFicha)
+}
+function hayEstrella() {
+    /*
+        PROPÓSITO:  Indica si hay estrella en la celda actual
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Debe haber una ficha en la celda actual --- deberiamos preguntar si hay ficha en la celda actual
+    */
+    
+    return (fichaAcá() == Estrella)
+}
+function hay3FichasIgualesAlrededor() { //TERMINAR
+    /*
+        PROPÓSITO:  Indica si hay tres fichas iguales en las celdas lindantes a la actual
+        TIPO: Booleano
+        PRECONDICIONES:
+            * nin
+    */
+    
+    return (hay3FichasIgualesDeTipo_(Círculo) || //cantidadDe_Alrededor(Estrella) == 3
+            hay3FichasIgualesDeTipo_(Triángulo) ||
+            hay3FichasIgualesDeTipo_(Rombo) ||
+            hay3FichasIgualesDeTipo_(Estrella))
+}
+function hay3FichasIgualesDeTipo_(formaDeFicha){
+       /*
+        PROPÓSITO:  Indica si hay tres fichas iguales de tipo *formaDeFicha* en las celdas lindantes a la actual
+        TIPO: Booleano
+        PRECONDICIONES:
+              * Debe haber al menos una celda lindante en todas las direcciones
+    */
+    cantidadDeFichasIguales := 0
+    dirección := minDir()
+    while (dirección =/ maxDir()) {
+        Mover(dirección)
+        cantidadDeFichasIguales := cantidadDeFichasIguales + unoSi_CeroSino(fichaAcá() == formaDeFicha)
+        Mover(opuesto(dirección))
+    }
+    Mover(dirección)
+    cantidadDeFichasIguales := cantidadDeFichasIguales + unoSi_CeroSino(fichaAcá() == formaDeFicha)
+    Mover(opuesto(dirección))
+    return (cantidadDeFichasIguales >= 3)
+}
+function hayObstáculo() { // + alrededor
+    /*
+        PROPÓSITO:  Indica si en la celda actual hay un obstáculo
+        TIPO: Bool
+        PRECONDICIONES:
+            * Debe haber un tipoDeElemento en la celda actual
+    */
+    
+   
+    dirección := minDir()
+    while (dirección =/ maxDir() && not tieneObstaculoAl_(direccion)) {
+      dirección := siguiente(direccion)
+    }
+   
+    return (tieneObstaculoAl_(direccion))
+}
+
+function tieneObstaculoAl_(direccion) {
+    /*
+        PROPÓSITO:  indica si se puede mover en direccion y hay obstaculo en dicha direccion
+        PARÁMETROS:
+            * direccion: tipo - descripción.
+           
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (puedeMover(direccion) && hayObstaculoAl_(direccion) )
+}
+
+function  hayObstaculoAl_(direccion) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * debe haber una ubicacion al 
+    */
+    Mover(direccion)
+    return (elementoAcá == Obstaculo)
+}
+
+//2
+
+function CantidadDe_EnGrilla(tipoDeElemento) {
+    /*
+        PROPÓSITO:  Describe la cantidad de *tipoDeElemento* que hay en todo el tablero
+        PARÁMETROS:
+            * tipoDeElemento: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    IrALaPrimeraCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    cantidadDeElemento := 0
+    while (haySiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)) {
+        cantidadDeElemento := cantidadDeElemento + unoSi_CeroSino(elementoAcá() == tipoDeElemento)
+        IrASiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    }
+    return (cantidadDeElemento + unoSi_CeroSino(elementoAcá == tipoDeElemento))
+}
+//3
+procedure ReponerEspaciosLibresEnGrilla_() {
+    /*
+        PROPÓSITO: Llena los espacios libres que haya en la grilla con fichas aleatorias
+        PRECONDICIONES:
+            * Ninguna
+    */
+    IrALaPrimeraCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    while (haySiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)) {
+        ReponerEspacioSiEstáLibre()
+        IrASiguienteCeldaDeUnRecorridoAl_Y_(Norte, Este)
+    }
+     ReponerEspacioSiEstáLibre()
+}
+procedure  ReponerEspacioSiEstáLibre() {
+    /*
+        PROPÓSITO:  reponer espacio libre con ficha aleatorio d ela celda actial si estuviera libre
+       
+        PRECONDICIONES:
+            * ninguna
+
+    */
+    if(elementoAcá() == Libre){
+
+    PonerFicha_(fichaAleatoria())
+    }
+}
+
+//4
+
+function estadoActualDelJuego() {
+    /*
+        PROPÓSITO:  describre el estado actual del juego
+     
+        TIPO: EstadoDelJuego
+        PRECONDICIONES:
+            * debe haber una forma de ficha de la cual hya mas cantidad
+            *el nivel es >= 0
+    */
+    
+    return (EstadoDelJuego(
+        nivel <- cantidadDe_EnGrilla(Obstáculo),
+        hayMásTriánguloQueCírculos <- (cantidadDe_EnGrilla(Triángulo) >   cantidadDe_EnGrilla(Círculo)),
+        quedanRombos <- (cantidadDe_EnGrilla(Rombo) > 0),
+        fichaDeLaCualHayMás <-
+    )
+    )
+}
+
+function FichaConMásCantidad (){
+    /*
+    PROPÓSITO: describe la forma de ficha de la cual hay mas cantidad
+    PRECONDICIONES: debe haber una froma de ficha de la cual hya mas cantidad
+    TIPO: formaDeFicha
+    
+    */
+
+    return (choose Circulo when hayMasDe_QueDe__Y_(Circulo,Triángulo,Estrella, Rombo)
+                    Triángulo when hayMasDe_QueDe__Y_(Triángulo,Estrella, Rombo, Circulo)
+                    Estrella when hayMasDe_QueDe__Y_(Estrella, Rombo, Circulo,Triángulo)
+                    Rombo otherwise
+
+    )
+}
+function hayMasDe_QueDe__Y_(forma1, forma2, forma3, forma4){
+    /*
+    PROPÓSITO: indica si hay mas ficas con froma 1 que de fichas con 2, forma 3 y forma 4
+    PRECONDICIONES: ninguna
+    TIPO: formaDeFicha
+    */
+    return (cantidadDe_EnGrilla(forma1) > cantidadDe_EnGrilla(forma2) &&
+            cantidadDe_EnGrilla(forma1) > cantidadDe_EnGrilla(forma3) &&
+            cantidadDe_EnGrilla(forma1) > cantidadDe_EnGrilla(forma4) &&
+    )
+}
